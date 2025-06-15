@@ -107,8 +107,37 @@
   }
 
   @media (max-width: 768px) {
+
     .register-box .register-grid {
       flex-direction: column;
+      align-items: center;
+      .register-form {
+        width: 100%;
+      }
+      form {
+        width: 100%;
+        padding: 1.5rem;
+        border-radius: 8px;
+      }
+      .register-image h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .register-image img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+      }
+      .register-image {
+        flex: 1 1 100%;
+        text-align: center;
+      }
+      .register-form {
+        flex: 1 1 100%;
+      }
+      .register-grid {
+        gap: 2rem;
+      }
     }
   }
 }
