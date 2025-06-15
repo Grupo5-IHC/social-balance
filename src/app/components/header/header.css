@@ -1,0 +1,110 @@
+.header {
+  background-color: #1C4C4C;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .header-content {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+  }
+
+  .logo img {
+    height: 3rem;
+    width: auto;
+    border-radius: 0.5rem;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+
+    span {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+    }
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    li a:hover {
+      color: #2B7A78;
+    }
+    }
+    .register-btn {
+      background-color: #ffffff;
+      color: #121721;
+      padding: 0.5rem 1.2rem;
+      font-weight: 600;
+      border: 2px solid #121721;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #121721;
+        color: #ffffff;
+      }
+  }
+
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: #1C4C4C;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem 2rem;
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease-in-out;
+
+      &.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      li {
+        width: 100%;
+        padding: 0.5rem 0;
+      }
+    }
+  }
+}

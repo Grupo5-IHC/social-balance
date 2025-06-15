@@ -1,0 +1,26 @@
+<nav class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <img src="logo_recortado.png" alt="Logo SocialBalance" />
+      </div>
+
+      <div class="hamburger" (click)="toggleMenu()" aria-label="Abrir menú" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul class="nav-links" [class.active]="menuOpen">
+        <li><a routerLink="/" (click)="closeMenu()">HOME</a></li>
+        <li><a href="#product" (click)="closeMenu()">PRODUCT</a></li>
+        <li><a routerLink="/about" (click)="closeMenu()">ABOUT US</a></li>
+        <li><a routerLink="/terms" (click)="closeMenu()">TERMS & CONDITIONS</a></li>
+        <li><a routerLink="/contact" (click)="closeMenu()">CONTACT US</a></li>
+      </ul>
+      <div>
+        <button routerLink="/register" class="register-btn" (click)="closeMenu()">REGISTER</button>
+      </div>
+    </div>
+  </div>
+</nav>

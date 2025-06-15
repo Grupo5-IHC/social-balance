@@ -1,0 +1,48 @@
+.terms {
+  background-color: #FFFFFF;
+  color: #121721;
+  padding: 6rem 1.5rem 4rem;
+  background-color: #2B7A78;
+
+  .container {
+    max-width: 90%;
+    margin: 2rem auto;
+    color: #FFFFFF;;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  ul li {
+    margin-left: 1.2rem;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+  }
+}
