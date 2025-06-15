@@ -28,7 +28,7 @@
         </div>
         <div class="form-group">
           <div class="icon-input">
-            <i class="fas fa-envelope"></i>
+            <i class="fas fa-envemlope"></i>
             <input type="email" name="email" ngModel placeholder="Correo electrónico" required #email="ngModel" />
           </div>
           <div class="error" *ngIf="email.invalid && email.touched">Correo electrónico inválido.</div>
@@ -44,12 +44,16 @@
           <input type="checkbox" name="captcha" [(ngModel)]="captchaChecked" required />
           I'm not a robot
         </label>
-        <div class="error" *ngIf="!captchaChecked && formAttempted">Debes confirmar que no eres un robot.</div>
+        <div class="error" *ngIf="!captchaChecked && formAttempted && !formSubmitted">Debes confirmar que no eres un robot.</div>
       </div>
       <button type="submit" [disabled]="contactForm.invalid || !captchaChecked">Enviar</button>
+      <div *ngIf="formSubmitted" class="success-message">
+        ¡Mensaje enviado correctamente!
+      </div>
     </form>
   </div>
 </section>
+
 
 <section class="divider">
   <div class="divider-content">

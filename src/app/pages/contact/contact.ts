@@ -13,19 +13,20 @@ export class Contact {
   formAttempted = false;
   captchaChecked = false;
 
-  onSubmit(form: NgForm): void {
+  onSubmit(form: NgForm) {
     this.formAttempted = true;
 
     if (form.valid && this.captchaChecked) {
-      const formData = form.value;
-      console.log('Formulario enviado:', formData);
-
       this.formSubmitted = true;
+
       form.resetForm();
       this.captchaChecked = false;
-      this.formAttempted = false;
-    } else {
-      this.scrollToFirstInvalidControl(form);
+
+      // Ocultar el mensaje después de unos segundos
+      setTimeout(() => {
+        this.formSubmitted = false;
+        this.formAttempted = false;
+      }, 5000);
     }
   }
 
