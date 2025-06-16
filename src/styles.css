@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+    --verde-turquesa: #2B7A78;
+    --verde-oscuro: #1C4C4C;
+    --verde-petroleo: #3E7C74;
+    --blanco: #FFFFFF;
+    --negro: #121721;
+
+}
+
 /* Reset y estilos base */
 * {
     box-sizing: border-box;
