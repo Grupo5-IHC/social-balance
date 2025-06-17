@@ -67,14 +67,19 @@ Angular 20 usa `app.routes.ts` para definir rutas. Ejemplo:
 
 ```ts
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { Home } from './pages/home/home';
+import { Contact } from './pages/contact/contact';
+import { Terms } from './pages/terms/terms';
+import { Register } from './pages/register/register';
+import { About } from './pages/about/about';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'terms', component: TermsComponent },
+    { path: '', component: Home },
+    { path: 'about', component: About },
+    { path: 'contact', component: Contact },
+    { path: 'terms', component: Terms },
+    { path: 'register', component: Register },
+    { path: '**', redirectTo: '' } // Redireccionar a la página de inicio para rutas no encontradas
 ];
 ```
 
@@ -88,21 +93,34 @@ Para formularios, se utiliza `FormsModule` con `[(ngModel)]` para el two-way bin
 
 ### Ejemplo de HTML:
 ```html
-<input type="text" name="firstName" ngModel required #firstName="ngModel">
-<div *ngIf="firstName.invalid && firstName.touched">Campo obligatorio</div>
+<div class="form-group">
+  <input type="text" name="username" ngModel placeholder="Nombre de Usuario" required #username="ngModel" />
+    @if (username.invalid && username.touched) {
+      <div class="error">Campo obligatorio</div>
+    }
+</div>
 ```
 
 ### Lógica en TypeScript:
 ```ts
 formSubmitted = false;
 formAttempted = false;
+captchaChecked = false;
 
 onSubmit(form: NgForm) {
   this.formAttempted = true;
-  if (form.valid) {
+
+  if (form.valid && this.captchaChecked) {
     this.formSubmitted = true;
+
     form.resetForm();
-    setTimeout(() => this.formSubmitted = false, 5000);
+    this.captchaChecked = false;
+
+    // Ocultar el mensaje después de unos segundos
+    setTimeout(() => {
+      this.formSubmitted = false;
+      this.formAttempted = false;
+    }, 5000);
   }
 }
 ```
