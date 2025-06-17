@@ -1,7 +1,7 @@
 .home {
-  background-color: #2B7A78;
+  background-color: var(--verde-turquesa);
   padding: 6rem 1rem 4rem;
-  color: white;
+  color: var(--blanco);
 
   .container {
     max-width: 1200px;
@@ -29,17 +29,18 @@
       }
 
       button {
-        background-color: white;
+        cursor: pointer;
+        background-color: var(--blanco);
         transition: all 0.3s ease;
-        &:hover {
-          background-color: #1C4C4C;
-          color: white;
-        }
-        color: #1C4C4C;
+        color: var(--verde-oscuro);
         padding: 0.75rem 1.5rem;
         border: none;
         border-radius: 8px;
         font-weight: 600;
+        &:hover {
+          background-color: #1C4C4C;
+          color: var(--blanco);
+        }
       }
     }
 
@@ -56,8 +57,8 @@
 
 
 .divider {
-  background-color: #3E7C74;
-  color: white;
+  background-color: var(--verde-petroleo);
+  color: var(--blanco);
   padding: 4rem 1rem;
   text-align: center;
 
@@ -79,9 +80,9 @@
 }
 
 .product {
-  background-color: #2B7A78;
+  background-color: var(--verde-turquesa);
   padding: 6rem 1rem 4rem;
-  color: white;
+  color: var(--blanco);
 
   .container {
     max-width: 1200px;

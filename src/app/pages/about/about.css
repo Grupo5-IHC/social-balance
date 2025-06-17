@@ -1,6 +1,6 @@
 .about {
-  background-color: #2B7A78;
-  color: #FFFFFF;
+  background-color: var(--verde-turquesa);
+  color: var(--blanco);
   padding: 7rem 1rem 4rem;
 
   .container {
@@ -10,7 +10,7 @@
   }
 
   .section {
-    background-color: #3E7C74;
+    background-color: var(--verde-petroleo);
     border: 1px solid #FFFFFF;
     border-radius: 10px;
     padding: 1.5rem;
@@ -30,13 +30,13 @@
     justify-items: center;
 
     .miembro {
-      background-color: #3E7C74;
+      background-color: var(--verde-petroleo);
       border-radius: 15px;
       padding: 1rem;
       width: 100%;
       max-width: 250px;
       text-align: center;
-      border: 2px solid #FFFFFF;
+      border: 2px solid var(--blanco);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
       img {
@@ -48,7 +48,7 @@
       }
 
       p {
-        color: #FFFFFF;
+        color: var(--blanco);
         font-size: 0.95rem;
       }
     }

@@ -1,13 +1,12 @@
 .terms {
-  background-color: #FFFFFF;
-  color: #121721;
+  background-color: var(--blanco);
   padding: 6rem 1.5rem 4rem;
   background-color: #2B7A78;
 
   .container {
     max-width: 90%;
     margin: 2rem auto;
-    color: #FFFFFF;;
+    color: var(--blanco);
   }
 
   h1 {

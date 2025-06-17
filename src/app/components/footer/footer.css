@@ -1,6 +1,6 @@
 .footer {
-  background-color: #1C4C4C;
-  color: white;
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
   padding: 3rem 1rem 2rem;
   font-size: 0.95rem;
 
@@ -31,13 +31,13 @@
   margin-top: 1rem;
 
   a {
-    color: white;
+    color: var(--blanco);
     font-size: 1.2rem;
     transition: color 0.3s ease;
   }
 
   a:hover {
-    color: #2B7A78;
+    color: var(--verde-turquesa);
   }
 }
 

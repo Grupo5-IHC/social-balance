@@ -1,5 +1,5 @@
 .register {
-  background-color: #2B7A78;
+  background-color: var(--verde-turquesa);
   padding: 6rem 0;
   display: flex;
   justify-content: center;
@@ -10,7 +10,7 @@
     padding: 2rem;
     max-width: 1200px;
     width: 100%;
-    color: white;
+    color: var(--blanco);
 
     .register-grid {
       display: flex;
@@ -18,7 +18,7 @@
       gap: 3rem;
     
       .register-form {
-        border: 1px solid #fff;
+        border: 1px solid var(--blanco);
         border-radius: 10px;
       }
       .register-image {
@@ -38,7 +38,7 @@
 
       form {
         flex: 1 1 45%;
-        background-color: #3E7C74;
+        background-color: var(--verde-petroleo);
         padding: 2rem;
         border-radius: 8px;
         display: flex;
@@ -81,9 +81,9 @@
 
         button {
           align-self: center;
-          background-color: #2B7A78;
-          border: 1px solid #fff;
-          color: #fff;
+          background-color: var(--verde-turquesa);
+          border: 1px solid var(--blanco);
+          color: var(--blanco);
           padding: 0.75rem 2rem;
           font-weight: bold;
           font-size: 1rem;

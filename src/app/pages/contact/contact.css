@@ -1,6 +1,6 @@
 .contact {
   margin-top: 5rem;
-  background-color: #2B7A78;
+  background-color: var(--verde-turquesa);
   padding: 4rem 1rem;
   display: flex;
   justify-content: center;
@@ -10,18 +10,18 @@
     position: relative;
     width: 100%;
     max-width: 960px;
-    background-color: #3E7C74;
+    background-color: var(--verde-petroleo);
     padding: 2rem;
     border-radius: 10px;
-    border: 1px solid white;
+    border: 1px solid var(--blanco);
     box-sizing: border-box;
     overflow-x: hidden;
-    color: white;
+    color: var(--blanco);
 
     h2 {
       text-align: center;
       margin-bottom: 2rem;
-      background-color: #1C4C4C;
+      background-color: var(--verde-oscuro);
       padding: 1rem;
       border-radius: 6px;
       font-size: 1.5rem;
@@ -60,14 +60,14 @@
       .icon-input {
         display: flex;
         align-items: center;
-        background-color: #fff;
+        background-color: var(--blanco);
         border-radius: 8px;
         padding: 0.5rem 1rem;
         box-sizing: border-box;
 
         i {
           margin-right: 0.5rem;
-          color: #1C4C4C;
+          color: var(--verde-oscuro);
         }
 
         input {
@@ -106,7 +106,7 @@
         gap: 0.5rem;
 
         i {
-          color: #1C4C4C;
+          color: var(--verde-oscuro);
         }
       }
     }
@@ -114,10 +114,10 @@
     button {
       align-self: center;
       padding: 1rem 3rem;
-      background-color: #2B7A78;
-      color: white;
+      background-color: var(--verde-turquesa);
+      color: var(--blanco);
       font-weight: bold;
-      border: 1px solid #121721;
+      border: 1px solid var(--negro);
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease;
@@ -127,7 +127,7 @@
     }
 
     button:hover:not(:disabled) {
-      background-color: #1C4C4C;
+      background-color: var(--verde-oscuro);
     }
 
     button:disabled {
@@ -150,7 +150,7 @@
 
 .success-message {
   background-color: var(--verde-oscuro);
-  color: #fff;
+  color: var(--blanco);
   text-align: center;
   padding: 1rem;
   border-radius: 8px;
@@ -168,7 +168,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: white;
+  color: var(--blanco);
   
   .divider-content {
     max-width: 1000px;
