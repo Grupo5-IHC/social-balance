@@ -1,59 +1,144 @@
-# SocialBalance
+# SocialBalance - Proyecto en Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
+**Angular** es un framework de desarrollo web basado en TypeScript creado por Google. Está diseñado para crear aplicaciones de una sola página (SPA) de manera eficiente y escalable. Angular se basa en componentes reutilizables, inyección de dependencias, enlace de datos bidireccional, y un potente sistema de enrutamiento.
 
-## Development server
+Este proyecto está construido usando **Angular versión 20**. A continuación, se describe la estructura general del proyecto, cómo se organizan los componentes, cómo se manejan los estilos, y las funcionalidades principales con TypeScript.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── app/
+│   ├── components/         # Componentes reutilizables como header y footer
+│   │   ├── header/
+│   │   └── footer/
+│   ├── pages/              # Páginas principales
+│   │   ├── home/
+│   │   ├── about/
+│   │   ├── contact/
+│   │   ├── register/
+│   │   └── terms/
+│   ├── app.config.ts       # Configuración de rutas
+│   └── app.component.ts    # Componente raíz
+├── assets/                 # Imágenes, íconos, fuentes
+└── styles.scss             # Estilos globales
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🧱 Componentes
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Los componentes están divididos en dos categorías:
 
-```bash
-ng generate component component-name
+- **`components/`**: contiene elementos reutilizables como el `header` y `footer`.
+- **`pages/`**: contiene las vistas completas como `home`, `about`, `contact`, etc.
+
+Cada componente tiene su propia carpeta con los archivos:
+
+- `.ts`: lógica del componente
+- `.html`: estructura de la vista
+- `.scss`: estilos específicos del componente
+
+---
+
+## 🎨 Estilos CSS
+
+Los estilos se manejan de forma modular:
+
+- `styles.css` define variables y estilos globales (colores, fuentes, reset).
+- Cada componente tiene su propio archivo `.css` con estilo encapsulado.
+- Se utiliza `@media` queries para diseño **responsive**.
+
+Paleta de colores utilizada:
+
+- `#2B7A78` (verde turquesa): fondo principal
+- `#1C4C4C` (verde profundo): contrastes y bloques secundarios
+- `#3E7C74` (verde petróleo): detalles elegantes
+- `#FFFFFF` (blanco): textos sobre fondos oscuros
+- `#121721` (negro): textos sobre fondos claros
+
+---
+
+## 🔀 Enrutamiento (Routing)
+
+Angular 20 usa `app.routes.ts` para definir rutas. Ejemplo:
+
+```ts
+import { Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
+
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'terms', component: TermsComponent },
+];
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+El archivo `app.config.ts` es donde se importa y configura el enrutamiento de manera centralizada.
 
-```bash
-ng generate --help
+---
+
+## 📩 Formularios y Validaciones
+
+Para formularios, se utiliza `FormsModule` con `[(ngModel)]` para el two-way binding. Se aplican validaciones en tiempo real:
+
+### Ejemplo de HTML:
+```html
+<input type="text" name="firstName" ngModel required #firstName="ngModel">
+<div *ngIf="firstName.invalid && firstName.touched">Campo obligatorio</div>
 ```
 
-## Building
+### Lógica en TypeScript:
+```ts
+formSubmitted = false;
+formAttempted = false;
 
-To build the project run:
-
-```bash
-ng build
+onSubmit(form: NgForm) {
+  this.formAttempted = true;
+  if (form.valid) {
+    this.formSubmitted = true;
+    form.resetForm();
+    setTimeout(() => this.formSubmitted = false, 5000);
+  }
+}
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 🚀 Despliegue con GitHub y Netlify
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
+### Paso 1: Subir a GitHub
+1. Inicializa un repositorio:
 ```bash
-ng test
+git init
+git add .
+git commit -m "Primer commit"
+git remote add origin https://github.com/usuario/repositorio.git
+git push -u origin main
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+### Paso 2: Construir el proyecto
 ```bash
-ng e2e
+ng build --configuration production
+```
+Esto genera los archivos en:
+```
+dist/social-balance/browser/
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Paso 3: Conectar Netlify
+1. Entra a [Netlify](https://www.netlify.com/)
+2. Crea un nuevo sitio con la opción **Importar desde Git**
+3. Elige GitHub y selecciona el repositorio
+4. Configura:
+   - **Framework**: Angular
+   - **Build command**: `ng build --configuration production`
+   - **Publish directory**: `dist/social-balance/browser`
 
-## Additional Resources
+Netlify construirá y desplegará tu proyecto automáticamente.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Desarrollado por el: **Grupo 5**
