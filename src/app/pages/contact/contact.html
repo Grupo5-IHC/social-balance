@@ -7,15 +7,19 @@
           <div class="icon-input">
             <i class="fas fa-user"></i>
             <input type="text" name="firstName" ngModel placeholder="Nombres" required #firstName="ngModel" />
-          </div>
-          <div class="error" *ngIf="firstName.invalid && firstName.touched">El nombre es obligatorio.</div>
+          </div> 
+          @if (firstName.invalid && firstName.touched) {
+            <div class="error">El nombre es obligatorio.</div>
+          }
         </div>
         <div class="form-group">
           <div class="icon-input">
             <i class="fas fa-user"></i>
             <input type="text" name="lastName" ngModel placeholder="Apellidos" required #lastName="ngModel" />
           </div>
-          <div class="error" *ngIf="lastName.invalid && lastName.touched">El apellido es obligatorio.</div>
+          @if (lastName.invalid && lastName.touched) {
+            <div class="error">El apellido es obligatorio.</div>
+          }
         </div>
       </div>
       <div class="row">
@@ -24,19 +28,25 @@
             <i class="fas fa-phone"></i>
             <input type="tel" name="phone" ngModel placeholder="Número de Teléfono" required #phone="ngModel" />
           </div>
-          <div class="error" *ngIf="phone.invalid && phone.touched">El número es obligatorio.</div>
+          @if (phone.invalid && phone.touched) {
+            <div class="error">El número es obligatorio.</div>
+          }    
         </div>
         <div class="form-group">
           <div class="icon-input">
             <i class="fas fa-envelope"></i>
             <input type="email" name="email" ngModel placeholder="Correo electrónico" required #email="ngModel" />
           </div>
-          <div class="error" *ngIf="email.invalid && email.touched">Correo electrónico inválido.</div>
+          @if (email.invalid && email.touched) {
+            <div class="error">Correo electrónico inválido.</div>
+          }
         </div>
       </div>
       <div class="form-group">
         <textarea name="message" ngModel rows="5" placeholder="Escriba aquí su mensaje" required #message="ngModel"></textarea>
-        <div class="error" *ngIf="message.invalid && message.touched">El mensaje es obligatorio.</div>
+        @if (message.invalid && message.touched) {
+          <div class="error">El mensaje es obligatorio.</div>
+        }
       </div>
       <div class="form-group captcha">
         <label>
@@ -44,12 +54,15 @@
           <input type="checkbox" name="captcha" [(ngModel)]="captchaChecked" required />
           I'm not a robot
         </label>
-        <div class="error" *ngIf="!captchaChecked && formAttempted && !formSubmitted">Debes confirmar que no eres un robot.</div>
+        @if (!captchaChecked && formAttempted && !formSubmitted) {
+          <div class="error">Debes confirmar que no eres un robot.</div>
+        }
       </div>
       <button type="submit" [disabled]="contactForm.invalid || !captchaChecked">Enviar</button>
-      <div *ngIf="formSubmitted" class="success-message">
-        ¡Mensaje enviado correctamente!
-      </div>
+      @if (formSubmitted) {
+        <div class="success-message">¡Mensaje enviado correctamente!</div>
+      }
+      
     </form>
   </div>
 </section>
