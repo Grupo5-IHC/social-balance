@@ -1,0 +1,84 @@
+.about {
+  background-color: var(--verde-turquesa);
+  color: var(--blanco);
+  padding: 7rem 1rem 4rem;
+}
+
+.about .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.about .section {
+  background-color: var(--verde-petroleo);
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.about .section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.about .equipo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.about .equipo .miembro {
+  background-color: var(--verde-petroleo);
+  border-radius: 15px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 250px;
+  text-align: center;
+  border: 2px solid var(--blanco);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about .equipo .miembro img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.about .equipo .miembro p {
+  color: var(--blanco);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .about .container {
+    padding: 0 1rem;
+  }
+
+  .about .section {
+    padding: 1rem;
+  }
+
+  .about .section h2 {
+    font-size: 1.5rem;
+  }
+
+  .about .section p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .about .equipo {
+    grid-template-columns: 1fr;
+  }
+
+  .about .equipo .miembro {
+    max-width: 100%;
+  }
+}

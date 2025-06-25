@@ -1,0 +1,44 @@
+<section class="register">
+  <div class="register-box">
+    <div class="register-grid">
+      <div class="register-image">
+        <h1>¡Intenta Social Balance!</h1>
+        <img src="assets/images/register.webp" alt="Registro" />
+      </div>
+      <form id="registerForm" class="register-form" novalidate>
+        <h2>Registro</h2>
+        <div class="form-group">
+          <input type="text" id="username" name="username" placeholder="Nombre de Usuario" required />
+          <div class="error-message" id="error-username"></div>
+        </div>
+        <div class="form-group">
+          <input type="text" id="fullname" name="fullname" placeholder="Nombre Completo" required />
+          <div class="error-message" id="error-fullname"></div>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder="Correo Electrónico" required />
+          <div class="error-message" id="error-email"></div>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="phone" name="phone" placeholder="Número de Teléfono" required />
+          <div class="error-message" id="error-phone"></div>
+        </div>
+        <div class="form-group">
+          <input type="text" id="university" name="university" placeholder="Universidad" required />
+          <div class="error-message" id="error-university"></div>
+        </div>
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" id="terms" name="terms" required />
+            He leído y acepto los Términos y Condiciones.
+          </label>
+          <div class="error-message" id="error-terms"></div>
+        </div>
+        <button type="submit">Crear cuenta</button>
+        <div class="success-message" id="registerSuccess" style="display:none;">
+          ¡Cuenta creada correctamente!
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
