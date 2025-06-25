@@ -41,5 +41,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.8.2"
+  },
+  "overrides": {
+    "esbuild": "^0.25.5",
+    "postcss": "^8.4.31"
   }
 }
