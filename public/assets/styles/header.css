@@ -1,0 +1,121 @@
+.header {
+  background-color: var(--verde-oscuro);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header .header-content {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem; /* altura del header */
+}
+
+.header .logo img {
+  height: 3rem;
+  width: auto;
+  border-radius: 0.5rem;
+}
+
+.header .hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.header .hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--blanco);
+  border-radius: 2px;
+}
+
+.header .nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.header .nav-links li a {
+  text-decoration: none;
+  color: var(--blanco);
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.header .nav-links li a:hover {
+  color: var(--verde-turquesa);
+}
+
+.header .register-btn {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--blanco);
+  color: var(--negro);
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  border: 2px solid var(--negro);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.header .register-btn:hover {
+  background-color: var(--negro);
+  color: var(--blanco);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header .container {
+    padding: 0 0.9rem;
+    justify-content: center;
+  }
+
+  .header .hamburger {
+    display: flex;
+    position: relative;
+    z-index: 2000;
+    margin-left: 1rem;
+  }
+
+  .header .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--verde-oscuro);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 2rem;
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .header .nav-links.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .header .nav-links li {
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+}
