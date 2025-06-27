@@ -1,0 +1,16 @@
+:root {
+    --verde-turquesa: #2B7A78;
+    --verde-oscuro: #1C4C4C;
+    --verde-petroleo: #3E7C74;
+    --blanco: #FFFFFF;
+    --negro: #121721;
+
+}
+
+/* Reset y estilos base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}

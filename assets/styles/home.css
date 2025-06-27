@@ -1,0 +1,148 @@
+.home {
+  background-color: var(--verde-turquesa);
+  padding: 6rem 1rem 4rem;
+  color: var(--blanco);
+}
+
+.home .container {
+  max-width: 1200px;
+  margin: 7rem auto;
+  padding: 0 1.5rem;
+}
+
+.home .hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.home .hero .text {
+  flex: 1 1 300px;
+}
+
+.home .hero .text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.home .hero .text p {
+  margin-bottom: 1.5rem;
+}
+
+.home .hero .text .register-btn {
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--blanco);
+  color: var(--verde-oscuro);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.home .hero .text .register-btn:hover {
+  background-color: #1C4C4C;
+  color: var(--blanco);
+}
+
+.home .hero .image {
+  flex: 1 1 300px;
+}
+
+.home .hero .image img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.divider {
+  background-color: var(--verde-petroleo);
+  color: var(--blanco);
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.divider .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.divider h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.divider p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.product {
+  background-color: var(--verde-turquesa);
+  padding: 6rem 1rem 4rem;
+  color: var(--blanco);
+}
+
+.product .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.product .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
+  gap: 2rem;
+}
+
+.product .product-image img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.product .product-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.product .product-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .home .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .divider {
+    padding: 3rem 1rem;
+  }
+  .divider h3 {
+    font-size: 1.5rem;
+  }
+  .divider p {
+    font-size: 0.95rem;
+  }
+  .product {
+    padding: 4rem 1rem;
+    text-align: center;
+  }
+  .product .product-grid {
+    grid-template-columns: 1fr;
+  }
+  .product .product-text {
+    padding-top: 1rem;
+  }
+  .product .product-text h2 {
+    font-size: 1.5rem;
+  }
+  .product .product-text p {
+    font-size: 0.95rem;
+  }
+}
