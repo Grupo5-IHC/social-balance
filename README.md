@@ -1,5 +1,7 @@
 # SocialBalance
 
+[Link de la Landing page](https://grupo5-ihc.github.io/social-balance/) 
+
 SocialBalance es una startup orientada a transformar el uso compulsivo de redes sociales en oportunidades reales de crecimiento personal para jóvenes universitarios. Nuestra plataforma digital ayuda a los estudiantes a tomar control de su bienestar digital mediante herramientas de gestión consciente, recompensas offline y retos sociales gamificados.
 
 ## 🚀 Descripción del Proyecto
