@@ -1,5 +1,5 @@
 // Función reutilizable para cargar contenido HTML
-function cargarHTML(id, archivo, callback) {
+function loadHTML(id, archivo, callback) {
   fetch(archivo)
     .then(res => {
       if (!res.ok) throw new Error(`Error al cargar ${archivo}: ${res.status}`);
@@ -20,11 +20,11 @@ function handleRouting() {
   const hash = location.hash.replace(/^#/, '') || 'home';
   const viewToLoad = (hash === 'product') ? 'home' : hash;
 
-  cargarHTML('ld-paginas', `${viewToLoad}.html`, () => {
+  loadHTML('ld-paginas', `${viewToLoad}.html`, () => {
     switch (hash) {
-      case 'about':    inicializarAbout();    break;
-      case 'contact':  inicializarContact();  break;
-      case 'register': inicializarRegister(); break;
+      case 'about': initAbout(); break;
+      case 'contact': inicializarContact(); break;
+      case 'register': initRegister(); break;
     }
 
     if (hash === 'product') {
@@ -44,7 +44,7 @@ function handleRouting() {
 
 
 // Inicializar comportamiento del header (menú hamburguesa + SPA)
-function inicializarHeader() {
+function initHeader() {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("navLinks");
 
@@ -76,13 +76,13 @@ function inicializarHeader() {
 }
 
 // Insertar automáticamente el año en el footer
-function inicializarFooter() {
+function initFooter() {
   const anio = document.getElementById("anio-actual");
   if (anio) anio.textContent = new Date().getFullYear();
 }
 
 // Inicializar comportamiento del About 
-function inicializarAbout() {
+function initAbout() {
   const integrantes = [
   {
     nombre: 'César Aróstegui',
@@ -180,7 +180,7 @@ function inicializarContact() {
 }
 
 // Inicializar comportamiento del Register
-function inicializarRegister() {
+function initRegister() {
   const form = document.getElementById("registerForm");
   const success = document.getElementById("registerSuccess");
 
@@ -233,8 +233,8 @@ function inicializarRegister() {
 // Punto de entrada de la aplicación
 document.addEventListener("DOMContentLoaded", () => {
   // Cargar header, footer y luego la vista según el hash
-  cargarHTML("ld-header", "header.html", inicializarHeader);
-  cargarHTML("ld-footer", "footer.html", inicializarFooter);
+  loadHTML("ld-header", "header.html", initHeader);
+  loadHTML("ld-footer", "footer.html", initFooter);
   handleRouting();
 });
 
