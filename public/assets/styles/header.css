@@ -62,6 +62,48 @@
   color: var(--verde-turquesa);
 }
 
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 2.2rem);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--verde-oscuro);
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  min-width: 200px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 1500;
+  border-radius: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu.active {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.dropdown-menu li + li {
+  margin-top: 0.25rem;
+}
+.dropdown-menu li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--blanco);
+  text-decoration: none;
+}
+.dropdown-menu li a:hover {
+  color: var(--verde-petroleo);
+}
+
 .header .register-btn {
   text-decoration: none;
   cursor: pointer;
@@ -117,5 +159,58 @@
   .header .nav-links li {
     width: 100%;
     padding: 0.5rem 0;
+  }
+
+  .header .nav-links .dropdown {
+    position: relative; /* para que el sub-menú se ancle aquí */
+  }
+
+  .dropdown-menu {
+    position: static;
+    display: none;
+    top: auto;
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+    padding: 0;
+    margin-top: 0.5rem;
+    margin-left: 0;
+    transform: none;
+    left: auto;
+    opacity: 1;
+    visibility: visible;
+    transition: none;
+    z-index: 2000;
+    flex-direction: column;
+  }
+
+  .dropdown-menu.active {
+    display: block !important;
+    background-color: var(--verde-oscuro);
+  }
+
+  .dropdown-menu li {
+    width: 100%;
+  }
+
+  .dropdown-menu li a {
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: var(--blanco) !important;
+    text-decoration: none;
+    display: block;
+    background-color: transparent;
+  }
+
+  .dropdown-menu li a:hover,
+  .dropdown-menu li a:focus,
+  .dropdown-menu li a:active {
+    color: var(--verde-turquesa) !important;
+  }
+
+  .dropdown-menu li:last-child a {
+    border-bottom: none;
   }
 }

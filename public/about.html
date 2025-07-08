@@ -1,4 +1,4 @@
-<section class="about">
+<section class="about" id="about">
   <div class="container">
     <div class="section">
       <h2>¿Quiénes somos?</h2>
@@ -16,6 +16,482 @@
 
     <div class="equipo" id="equipo">
       <!-- Aquí se insertarán los miembros del equipo -->
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+  <div class="section alianzas-section" id="alianzas">
+      <h2>Universidades aliadas</h2>
+      <p class="alianzas-subtitulo">Con la confianza de estas instituciones académicas.</p>
+
+      <div class="alianzas__carrusel">
+        <button class="alianzas__btn alianzas__btn--prev" aria-label="Anterior">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="alianzas__carrusel-container">
+          <ul class="alianzas__lista">
+            <li class="alianzas__item">
+              <a href="https://www.upc.edu.pe" target="_blank"><img src="assets/images/universities/upc-logo.webp" alt="Logo Universidad UPC"></a>
+            </li>
+            <li class="alianzas__item">
+              <a href="https://www.pucp.edu.pe" target="_blank"><img src="assets/images/universities/pucp-logo.webp" alt="Logo Universidad PUCP"></a>
+            </li>
+            <li class="alianzas__item">
+              <a href="https://www.unmsm.edu.pe" target="_blank"><img src="assets/images/universities/unmsm-logo.webp" alt="Logo Universidad UNMSM"></a>
+            </li>
+            <li class="alianzas__item">
+              <a href="https://www.uni.edu.pe" target="_blank"><img src="assets/images/universities/uni-logo2.webp" alt="Logo Universidad UNI"></a>
+            </li>
+            <li class="alianzas__item">
+              <a href="https://www.utp.edu.pe" target="_blank"><img src="assets/images/universities/utp-logo.webp" alt="Logo Universidad UTP"></a>
+            </li>
+            <li class="alianzas__item">
+              <a href="https://www.up.edu.pe" target="_blank"><img src="assets/images/universities/up-logo.webp" alt="Logo Universidad UP"></a>
+            </li>
+            <li class="alianzas__item">
+              <a href="https://www.cayetano.edu.pe" target="_blank"><img src="assets/images/universities/upch-logo.webp" alt="Logo Universidad UPCH"></a>
+            </li>
+            <li class="alianzas__item">
+              <a href="https://www.ulima.edu.pe" target="_blank"><img src="assets/images/universities/ul-logo.webp" alt="Logo Universidad ULima"></a>
+            </li>
+            <li class="alianzas__item">
+              <a href="https://www.usil.edu.pe" target="_blank"><img src="assets/images/universities/usil-logo.webp" alt="Logo Universidad USIL"></a>
+            </li>
+            <li class="alianzas__item">
+              <a href="https://www.udep.edu.pe" target="_blank"><img src="assets/images/universities/udep-logo.webp" alt="Logo Universidad UDEP"></a>
+            </li>
+          </ul>
+        </div>
+        
+        <button class="alianzas__btn alianzas__btn--next" aria-label="Siguiente">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      
+      <div class="alianzas__dots" aria-hidden="true">
+        <!-- Los puntos se generan dinámicamente desde el javascript -->
+      </div>
+  </div>
+</section>
+
+<section class="ranking-section" id="ranking">
+  <div class="container">
+    <div class="ranking-header">
+      <h2>Ranking universitario de participación</h2>
+      <p class="ranking-subtitulo">Descubre cuáles universidades lideran el cambio hacia un bienestar digital saludable</p>
+    </div>
+
+    <div class="ranking-container">
+      <div class="ranking-chart" id="ranking-chart">
+        <!-- Las barras del ranking se generan dinámicamente -->
+      </div>
+      
+      <div class="ranking-actions">
+        <button class="ranking-btn ranking-btn--complete" id="ver-ranking-completo">
+          Ver ranking completo
+        </button>
+        <div class="ranking-search" id="ranking-search" style="display: none;">
+          <input type="text" placeholder="Buscar mi universidad..." id="search-university">
+          <button class="ranking-btn ranking-btn--search" id="buscar-universidad">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ranking-complete" id="ranking-complete">
+      <h3>Ranking completo</h3>
+      <div class="ranking-table">
+        <div class="ranking-table-header">
+          <span>Posición</span>
+          <span>Universidad</span>
+          <span>Estudiantes activos</span>
+          <span>Puntos acumulados</span>
+        </div>
+        <div class="ranking-table-body" id="ranking-table-body">
+          <!-- La tabla completa se genera dinámicamente -->
+        </div>
+      </div>
+      <div class="ranking-cards-mobile" id="ranking-cards-mobile">
+        <!-- Las cards móviles se generan dinámicamente -->
+      </div>
+      <button class="ranking-btn ranking-btn--close" id="cerrar-ranking">
+        Cerrar ranking completo
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<section class="patrocinadores-section" id="partners">
+  <div class="container">
+    <div class="patrocinadores-header">
+      <h2>Aliados que creen en el bienestar digital</h2>
+      <p class="patrocinadores-subtitulo">Gracias a nuestros patrocinadores que respaldan Social Balance, podemos ofrecer recompensas, talleres y experiencias a más estudiantes.</p>
+    </div>
+
+    <div class="patrocinadores-grid">
+      <div class="patrocinador-card">
+        <a href="https://www.pedidosya.com.pe" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/sponsors/pedidosya-logo.webp" alt="Logo PedidosYa">
+          <div class="patrocinador-overlay">
+            <span>Visitar sitio web</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="patrocinador-card">
+        <a href="https://www.rappi.com.pe" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/sponsors/rappi-logo.webp" alt="Logo Rappi">
+          <div class="patrocinador-overlay">
+            <span>Visitar sitio web</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="patrocinador-card">
+        <a href="https://www.yape.com.pe" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/sponsors/yape-logo.webp" alt="Logo Yape">
+          <div class="patrocinador-overlay">
+            <span>Visitar sitio web</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="patrocinador-card">
+        <a href="https://www.plin.pe" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/sponsors/plin-logo.webp" alt="Logo Plin">
+          <div class="patrocinador-overlay">
+            <span>Visitar sitio web</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="patrocinador-card">
+        <a href="https://www.cineplanet.com.pe" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/sponsors/cineplanet-logo.webp" alt="Logo Cineplanet">
+          <div class="patrocinador-overlay">
+            <span>Visitar sitio web</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="patrocinador-card">
+        <a href="https://www.cinemark.com.pe" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/sponsors/cinemark-logo.webp" alt="Logo Cinemark">
+          <div class="patrocinador-overlay">
+            <span>Visitar sitio web</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="patrocinador-card">
+        <a href="https://web.didiglobal.com/pe/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/sponsors/didi-logo.webp" alt="Logo DiDi">
+          <div class="patrocinador-overlay">
+            <span>Visitar sitio web</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="patrocinador-card">
+        <a href="https://www.realplaza.com" target="_blank" rel="noopener noreferrer">
+          <img src="assets/images/sponsors/realplaza-logo.webp" alt="Logo Real Plaza">
+          <div class="patrocinador-overlay">
+            <span>Visitar sitio web</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="impact-section" id="impact">
+  <div class="container">
+    <div class="impact-header">
+      <h2>Nuestro impacto hasta hoy</h2>
+      <p class="impact-subtitulo">Miles de estudiantes ya forman parte de Social Balance. Estas son algunas cifras que lo demuestran:</p>
+    </div>
+
+    <div class="impact-stats">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stat-number" data-target="12000">0</div>
+        <div class="stat-label">estudiantes inscritos</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-chalkboard-teacher"></i>
+        </div>
+        <div class="stat-number" data-target="350">0</div>
+        <div class="stat-label">talleres realizados</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="stat-number" data-target="95">0</div>
+        <div class="stat-suffix">%</div>
+        <div class="stat-label">de satisfacción</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonios-section" id="testimonials">
+  <div class="container">
+    <div class="testimonios-header">
+      <h2>Testimonios</h2>
+      <p class="testimonios-subtitulo">Conoce las experiencias de nuestros usuarios y cómo Social Balance ha transformado su relación con la tecnología.</p>
+    </div>
+
+    <div class="testimonios-grid">
+      <div class="testimonio-card">
+        <div class="testimonio-foto">
+          <img src="assets/images/testimonials/laura.webp" alt="Laura M.">
+        </div>
+        <div class="testimonio-content">
+          <h3>Laura M. <span class="testimonio-edad">(22 años, estudiante de Psicología PUCP)</span></h3>
+          <div class="testimonio-text">
+            <p class="testimonio-preview">
+              "Antes pasaba más de 6 horas al día en Instagram y TikTok. Me costaba concentrarme para estudiar. Gracias al sistema de retos diarios y la calculadora de puntos, logré reducir mi uso de las redes sociales en un 60% en solo 2 meses."
+            </p>
+            <p class="testimonio-full" style="display: none;">
+              "Antes pasaba más de 6 horas al día en Instagram y TikTok. Me costaba concentrarme para estudiar. Gracias al sistema de retos diarios y la calculadora de puntos, logré reducir mi uso de las redes sociales en un 60% en solo 2 meses. Además, los tips de bienestar me ayudaron a crear una rutina más saludable. Me siento mucho más productiva y tranquila."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card">
+        <div class="testimonio-foto">
+          <img src="assets/images/testimonials/diego.webp" alt="Diego A.">
+        </div>
+        <div class="testimonio-content">
+          <h3>Diego A. <span class="testimonio-edad">(25 años, egresado de Ingeniería UPC)</span></h3>
+          <div class="testimonio-text">
+            <p class="testimonio-preview">
+              "No pensé que una app pudiera cambiar tanto mis hábitos. Empecé con el modo camaleón durante mis horas de estudio y terminé por adoptar las técnicas de las jornadas finales que no podía enfocarme mucho más."
+            </p>
+            <p class="testimonio-full" style="display: none;">
+              "No pensé que una app pudiera cambiar tanto mis hábitos. Empecé con el modo camaleón durante mis horas de estudio y terminé por adoptar las técnicas de las jornadas finales que no podía enfocarme mucho más. El sistema de puntos me motivó para continuar mis primeros puntos por una entrada al cine. Lo mejor es que ahora no siento ansiedad cuando dejo el celular a un lado."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card">
+        <div class="testimonio-foto">
+          <img src="assets/images/testimonials/lucia.webp" alt="Lucia R.">
+        </div>
+        <div class="testimonio-content">
+          <h3>Lucia R. <span class="testimonio-edad">(20 años, estudiante de Comunicación ULima)</span></h3>
+          <div class="testimonio-text">
+            <p class="testimonio-preview">
+              "Solía despertarme y lo primero que hacía era ver redes por más de una hora. Solía ponerme ansiosa y ya no disfrutaba completamente conectada y responsable cuando mi tiempo conectada y responsable."
+            </p>
+            <p class="testimonio-full" style="display: none;">
+              "Solía despertarme y lo primero que hacía era ver redes por más de una hora. Solía ponerme ansiosa y ya no disfrutaba completamente conectada y responsable cuando mi tiempo conectada y responsable. Me encantan los talleres de creatividad y la opción de último a retos con mis amigas. Ya voy más de 40 horas acumuladas sin redes... ¡y contando!"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonios-actions">
+      <button class="testimonios-btn" id="toggle-testimonios" data-action="expand">
+        Ver Testimonios Completos
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="carrusel-testimonios-section">
+  <div class="container">
+    <div class="carrusel-testimonios-header">
+      <h2>Carrusel de Testimonios</h2>
+      <p class="carrusel-testimonios-subtitulo">Conoce más historias de éxito de nuestros usuarios.</p>
+    </div>
+
+    <div class="carrusel-testimonios-wrapper">
+      <div class="carrusel-testimonios-fotos">
+        <button class="carrusel-testimonios-btn carrusel-testimonios-btn--prev" aria-label="Anterior">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="carrusel-testimonios-container">
+          <div class="carrusel-testimonios-lista">
+            <div class="carrusel-testimonio-item active" data-testimonio="0">
+              <img src="assets/images/testimonials/andrea.webp" alt="Andrea C.">
+            </div>
+            <div class="carrusel-testimonio-item" data-testimonio="1">
+              <img src="assets/images/testimonials/luis.webp" alt="Luis M.">
+            </div>
+            <div class="carrusel-testimonio-item" data-testimonio="2">
+              <img src="assets/images/testimonials/sofia.webp" alt="Sofia R.">
+            </div>
+            <div class="carrusel-testimonio-item" data-testimonio="3">
+              <img src="assets/images/testimonials/jose.webp" alt="Jose D.">
+            </div>
+            <div class="carrusel-testimonio-item" data-testimonio="4">
+              <img src="assets/images/testimonials/sebastian.webp" alt="Sebastián L.">
+            </div>
+          </div>
+        </div>
+
+        <button class="carrusel-testimonios-btn carrusel-testimonios-btn--next" aria-label="Siguiente">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="carrusel-testimonios-texto">
+        <div class="testimonio-activo" data-testimonio="0">
+          <h3>Andrea C. <span>(estudiante de la UNMSM)</span></h3>
+          <p>"Reducí 5 horas de día en redes. Ahora tengo tiempo para leer y descansar mejor."</p>
+        </div>
+        <div class="testimonio-activo" data-testimonio="1" style="display: none;">
+          <h3>Luis M. <span>(alumno de la UPC)</span></h3>
+          <p>"El reto semanal me ayudó a enfocarme en clases. No he tocado el teléfono cada 5 minutos."</p>
+        </div>
+        <div class="testimonio-activo" data-testimonio="2" style="display: none;">
+          <h3>Sofia R. <span>(estudiante de la PUCP)</span></h3>
+          <p>"Gracias a los tips diarios, dejé de revisar redes antes de dormir. Ya voy más de 30 días contando!"</p>
+        </div>
+        <div class="testimonio-activo" data-testimonio="3" style="display: none;">
+          <h3>Jose D. <span>(estudiante de la UTP)</span></h3>
+          <p>"Mi productividad aumentó un 70%. Uso las técnicas de concentración todos los días."</p>
+        </div>
+        <div class="testimonio-activo" data-testimonio="4" style="display: none;">
+          <h3>Sebastián L. <span>(estudiante de la ULima)</span></h3>
+          <p>"Los talleres de creatividad me motivaron. Ahora dedico más tiempo a mis hobbies reales."</p>
+        </div>
+      </div>
+
+      <div class="carrusel-testimonios-dots">
+        <!-- Los dots se generan dinámicamente desde el javascript -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN VIDEO TESTIMONIAL DESTACADO -->
+<section class="video-testimonial-section" id="video-testimonial">
+  <div class="container">
+    <div class="video-testimonial-content">
+      <div class="video-testimonial-text">
+        <h2>Video testimonial destacado</h2>
+        <p>Testimonio real de nuestra aplicación</p>
+      </div>
+      <div class="video-testimonial-thumbnail">
+        <img src="assets/images/testimonials/video-thumbnail.webp" alt="Thumbnail del video testimonial" id="video-thumbnail">
+        <div class="video-overlay">
+          <div class="play-icon">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL DEL VIDEO -->
+<div class="video-modal" id="video-modal">
+  <div class="video-modal-overlay" id="video-modal-overlay"></div>
+  <div class="video-modal-content">
+    <button class="video-modal-close" id="video-modal-close" aria-label="Cerrar modal">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="video-container">
+      <iframe id="youtube-iframe" 
+              width="100%" 
+              height="100%" 
+              src="" 
+              title="Video testimonial Social Balance"
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- SECCIÓN PREGUNTAS FRECUENTES (FAQ) -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <h2>Preguntas frecuentes</h2>
+      <p class="faq-subtitulo">Resuelve tus dudas más comunes sobre Social Balance de forma rápida y sencilla.</p>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-item" data-faq="1">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+          <span>¿Cómo mide la app el tiempo que paso fuera de redes sociales?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Social Balance utiliza APIs de monitoreo del sistema operativo para detectar cuando usas aplicaciones de redes sociales. El tiempo fuera de estas apps se contabiliza automáticamente en tu perfil. También puedes configurar manualmente períodos de desconexión si prefieres un control más directo.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-faq="2">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+          <span>¿Cómo se asegura la app de proteger mis datos personales?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Todos tus datos están cifrados de extremo a extremo y almacenados en servidores seguros certificados. Solo procesamos información necesaria para el funcionamiento de la app: tiempo de uso, configuraciones de retos y progreso personal. Nunca vendemos datos a terceros ni accedemos al contenido de tus redes sociales.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-faq="3">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+          <span>¿El boletín de bienestar cambia según el plan que elija?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Sí, el boletín se personaliza según tu plan. El plan gratuito incluye tips básicos semanales. El plan premium ofrece contenido diario personalizado, técnicas avanzadas de bienestar digital y recomendaciones basadas en tu progreso individual. El plan universitario incluye contenido específico para estudiantes y fechas de exámenes.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-faq="5">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+          <span>¿Cómo funciona el sistema de puntos y recompensas?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Ganas puntos completando retos diarios, manteniendo períodos sin redes sociales y participando en talleres. Los puntos se pueden canjear por recompensas reales como entradas de cine, descuentos en restaurantes, productos de nuestros patrocinadores y acceso a eventos exclusivos de bienestar digital.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" data-faq="6">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+          <span>¿Qué pasa si no puedo completar un reto diario?</span>
+          <i class="fas fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-answer">
+          <p>No te preocupes, nuestro enfoque es positivo y flexible. Si no completas un reto, no pierdes puntos acumulados. Puedes recuperar el progreso al día siguiente o elegir un reto alternativo más adaptado a tu situación actual. El objetivo es el progreso sostenible, no la perfección.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-contact">
+      <div class="faq-contact-content">
+        <h3>¿No encontraste lo que buscabas?</h3>
+        <p>Nuestro equipo está aquí para ayudarte con cualquier duda específica.</p>
+        <a href="#contact" class="faq-contact-btn">
+          <i class="fas fa-envelope"></i>
+          Contáctanos
+        </a>
+      </div>
     </div>
   </div>
 </section>
