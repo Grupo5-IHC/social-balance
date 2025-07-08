@@ -253,7 +253,14 @@ function handleRouting() {
         initFAQ(); 
         break;
       case 'contact': inicializarContact(); break;
-      case 'register': initRegister(); break;
+      case 'register': 
+        initRegister(); 
+        // Inicializar eventos de descarga después de cargar la página
+        setTimeout(() => {
+          initDownloadAppEvents();
+          initDownloadBanner();
+        }, 100);
+        break;
     }
 
     // Manejar scroll con offset del header
@@ -2189,6 +2196,139 @@ function initTallerModals() {
       document.body.style.overflow = 'auto';
     }
   });
+}
+
+// Inicializar eventos de descarga de app (US44) - llamado desde handleRouting
+function initDownloadAppEvents() {
+  const downloadModalOverlay = document.getElementById('downloadModalOverlay');
+  const downloadModalClose = document.getElementById('downloadModalClose');
+  
+  // Solo ejecutar si existe el modal
+  if (!downloadModalOverlay) {
+    return;
+  }
+  
+  // Función para manejar clics en los botones principales de descarga
+  function handleMainDownloadClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Siempre mostrar el modal (tanto en desktop como en móvil)
+    if (downloadModalOverlay) {
+      downloadModalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  // Función para cerrar el modal
+  function closeDownloadModal() {
+    if (downloadModalOverlay) {
+      downloadModalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  
+  // Agregar event listeners a todos los botones de descarga
+  const allDownloadButtons = document.querySelectorAll('.download-app-btn');
+  
+  allDownloadButtons.forEach((button) => {
+    // Remover event listeners previos si existen
+    button.removeEventListener('click', handleMainDownloadClick);
+    button.addEventListener('click', handleMainDownloadClick);
+  });
+  
+  // Event listeners para cerrar el modal
+  if (downloadModalClose) {
+    downloadModalClose.removeEventListener('click', closeDownloadModal);
+    downloadModalClose.addEventListener('click', closeDownloadModal);
+  }
+  
+  // Cerrar modal al hacer clic en el overlay
+  downloadModalOverlay.removeEventListener('click', handleOverlayClick);
+  downloadModalOverlay.addEventListener('click', handleOverlayClick);
+  
+  function handleOverlayClick(e) {
+    if (e.target === downloadModalOverlay) {
+      closeDownloadModal();
+    }
+  }
+  
+  // Cerrar modal con tecla Escape (solo agregar una vez)
+  document.removeEventListener('keydown', handleEscapeKey);
+  document.addEventListener('keydown', handleEscapeKey);
+  
+  function handleEscapeKey(e) {
+    if (e.key === 'Escape' && downloadModalOverlay && downloadModalOverlay.classList.contains('active')) {
+      closeDownloadModal();
+    }
+  }
+}
+
+// Funcionalidad para el banner flotante de descarga de app (US44)
+function initDownloadBanner() {
+  const downloadAppSection = document.getElementById('downloadAppSection');
+  const floatingBanner = document.getElementById('downloadFloatingBanner');
+  const downloadBannerBtn = document.getElementById('downloadBannerBtn');
+  const downloadModalOverlay = document.getElementById('downloadModalOverlay');
+  
+  // Solo ejecutar si existe la sección de descarga (página de registro)
+  if (!downloadAppSection || !floatingBanner) return;
+  
+  let isScrolledDown = false;
+  
+  // Función para detectar si es dispositivo móvil
+  function isMobile() {
+    return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+  
+  // Función para mostrar/ocultar el banner flotante según el scroll
+  function toggleFloatingBanner() {
+    const sectionRect = downloadAppSection.getBoundingClientRect();
+    const sectionBottom = sectionRect.bottom;
+    
+    // Mostrar banner flotante cuando la sección principal salga de vista
+    if (sectionBottom < 0 && !isScrolledDown) {
+      isScrolledDown = true;
+      floatingBanner.classList.add('show');
+    } else if (sectionBottom >= 0 && isScrolledDown) {
+      isScrolledDown = false;
+      floatingBanner.classList.remove('show');
+    }
+  }
+  
+  // Función para manejar el clic en el botón del banner flotante
+  function handleFloatingBannerClick() {
+    if (isMobile()) {
+      // En móvil: detectar OS y redirigir directamente
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      
+      if (/android/i.test(userAgent)) {
+        // Android
+        window.open('https://play.google.com/store/apps/details?id=com.socialbalance.app', '_blank');
+      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        // iOS
+        window.open('https://apps.apple.com/app/social-balance/id123456789', '_blank');
+      } else {
+        // Fallback para otros móviles
+        window.open('https://play.google.com/store/apps/details?id=com.socialbalance.app', '_blank');
+      }
+    } else {
+      // En escritorio: mostrar modal con QR codes
+      if (downloadModalOverlay) {
+        downloadModalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+  }
+  
+  // Event listeners
+  window.removeEventListener('scroll', toggleFloatingBanner);
+  window.addEventListener('scroll', toggleFloatingBanner, { passive: true });
+  
+  if (downloadBannerBtn) {
+    downloadBannerBtn.removeEventListener('click', handleFloatingBannerClick);
+    downloadBannerBtn.addEventListener('click', handleFloatingBannerClick);
+  }
 }
 
 // Inicializar todos los contenios al cargar la página

@@ -42,3 +42,112 @@
     </div>
   </div>
 </section>
+
+<!-- Sección de descarga de app (US44) -->
+<section class="download-app-section" id="downloadAppSection">
+  <div class="download-app-container">
+    <div class="download-app-content">
+      <div class="download-app-text">
+        <h2>Descarga la app y lleva tu progreso contigo</h2>
+        <p>Lleva tu bienestar digital a otro nivel. Descarga la app de Social Balance y accede a consejos, talleres y recompensas desde tu celular.</p>
+        
+        <div class="download-app-buttons">
+          <button class="download-app-btn google-play" id="downloadAndroidBtn">
+            <i class="fab fa-google-play"></i>
+            <div class="download-btn-text">
+              <span class="download-btn-label">Disponible en</span>
+              <span class="download-btn-store">Google Play</span>
+            </div>
+          </button>
+          
+          <button class="download-app-btn app-store" id="downloadIOSBtn">
+            <i class="fab fa-apple"></i>
+            <div class="download-btn-text">
+              <span class="download-btn-label">Descargar en</span>
+              <span class="download-btn-store">App Store</span>
+            </div>
+          </button>
+        </div>
+      </div>
+      
+      <div class="download-app-image">
+        <img src="assets/images/app.webp" alt="Social Balance App" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner flotante que aparece al hacer scroll -->
+  <div class="download-floating-banner" id="downloadFloatingBanner">
+    <div class="download-banner-content">
+      <div class="download-banner-text">
+        <i class="fas fa-mobile-alt"></i>
+        <span>¡Descarga nuestra app!</span>
+      </div>
+      <button class="download-banner-btn" id="downloadBannerBtn">
+        <i class="fas fa-download"></i>
+        Descargar
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal para códigos QR cuando se hace clic en el banner flotante -->
+  <div class="download-modal-overlay" id="downloadModalOverlay">
+    <div class="download-modal">
+      <button class="download-modal-close" id="downloadModalClose">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="download-modal-header">
+        <h3>Descarga Social Balance</h3>
+        <p>Escanea el código QR con tu dispositivo móvil</p>
+      </div>
+      
+      <div class="download-modal-content">
+        <div class="qr-section">
+          <div class="qr-card">
+            <div class="qr-header">
+              <i class="fab fa-google-play"></i>
+              <h4>Google Play</h4>
+            </div>
+            <div class="qr-code">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://play.google.com/store/apps/details?id=com.socialbalance.app" alt="QR Code Google Play">
+            </div>
+            <p>Para dispositivos Android</p>
+          </div>
+          
+          <div class="qr-card">
+            <div class="qr-header">
+              <i class="fab fa-apple"></i>
+              <h4>App Store</h4>
+            </div>
+            <div class="qr-code">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://apps.apple.com/app/social-balance/id123456789" alt="QR Code App Store">
+            </div>
+            <p>Para dispositivos iOS</p>
+          </div>
+        </div>
+        
+        <div class="download-modal-footer">
+          <p>También puedes hacer clic en los botones para ir directamente a las tiendas:</p>
+          <div class="download-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.socialbalance.app" target="_blank" class="download-btn google-play">
+              <i class="fab fa-google-play"></i>
+              <div class="download-btn-text">
+                <span class="download-btn-label">Disponible en</span>
+                <span class="download-btn-store">Google Play</span>
+              </div>
+            </a>
+            
+            <a href="https://apps.apple.com/app/social-balance/id123456789" target="_blank" class="download-btn app-store">
+              <i class="fab fa-apple"></i>
+              <div class="download-btn-text">
+                <span class="download-btn-label">Descargar en</span>
+                <span class="download-btn-store">App Store</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
