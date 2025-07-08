@@ -666,41 +666,195 @@ function inicializarContact() {
     e.preventDefault();
 
     let valid = true;
-    const checks = [
-      { id: "firstName", validator: v => v.trim() !== "", msg: "El nombre es obligatorio." },
-      { id: "lastName", validator: v => v.trim() !== "", msg: "El apellido es obligatorio." },
-      { id: "phone", validator: v => v.trim() !== "", msg: "El número es obligatorio." },
-      { id: "email", validator: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), msg: "Correo electrónico inválido." },
-      { id: "message", validator: v => v.trim() !== "", msg: "El mensaje es obligatorio." },
-    ];
-
-    // Limpia mensajes anteriores
-    checks.forEach(c => {
-      document.getElementById(`error-${c.id}`).textContent = "";
+    
+    // Limpiar errores y clases de error previos
+    const errorElements = document.querySelectorAll(".contact-error-message");
+    errorElements.forEach(error => {
+      error.textContent = "";
     });
-    document.getElementById("error-captcha").textContent = "";
+    
+    // Limpiar clases de error de inputs
+    const iconInputs = document.querySelectorAll(".contact-icon-input");
+    iconInputs.forEach(input => {
+      input.classList.remove("error");
+    });
+    
+    const textarea = document.querySelector(".contact-textarea");
+    if (textarea) {
+      textarea.classList.remove("error");
+    }
 
-    // Valida campos
-    checks.forEach(c => {
-      const val = document.getElementById(c.id).value;
-      if (!c.validator(val)) {
-        document.getElementById(`error-${c.id}`).textContent = c.msg;
-        valid = false;
+    // Función para mostrar error
+    function mostrarError(fieldId, mensaje) {
+      const errorElement = document.getElementById(`error-${fieldId}`);
+      if (errorElement) {
+        errorElement.textContent = mensaje;
       }
-    });
+      
+      // Agregar clase de error al contenedor apropiado
+      const field = document.getElementById(fieldId);
+      if (field) {
+        if (field.tagName === 'TEXTAREA') {
+          field.classList.add("error");
+        } else {
+          const iconInput = field.closest('.contact-icon-input');
+          if (iconInput) {
+            iconInput.classList.add("error");
+          }
+        }
+      }
+      valid = false;
+    }
 
-    // Valida captcha
+    // Validaciones mejoradas
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
     const captcha = document.getElementById("captcha");
+
+    // Validar nombres
+    if (!firstName) {
+      mostrarError("firstName", "El nombre es obligatorio.");
+    } else if (firstName.length < 2) {
+      mostrarError("firstName", "El nombre debe tener al menos 2 caracteres.");
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(firstName)) {
+      mostrarError("firstName", "El nombre solo debe contener letras.");
+    }
+
+    // Validar apellidos
+    if (!lastName) {
+      mostrarError("lastName", "El apellido es obligatorio.");
+    } else if (lastName.length < 2) {
+      mostrarError("lastName", "El apellido debe tener al menos 2 caracteres.");
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(lastName)) {
+      mostrarError("lastName", "El apellido solo debe contener letras.");
+    }
+
+    // Validar teléfono
+    if (!phone) {
+      mostrarError("phone", "El número de teléfono es obligatorio.");
+    } else if (!/^[0-9+\-\s()]+$/.test(phone)) {
+      mostrarError("phone", "Formato de teléfono inválido.");
+    } else if (phone.replace(/[^0-9]/g, '').length < 8) {
+      mostrarError("phone", "El número debe tener al menos 8 dígitos.");
+    }
+
+    // Validar email
+    if (!email) {
+      mostrarError("email", "El correo electrónico es obligatorio.");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      mostrarError("email", "Formato de correo electrónico inválido.");
+    }
+
+    // Validar mensaje
+    if (!message) {
+      mostrarError("message", "El mensaje es obligatorio.");
+    } else if (message.length < 10) {
+      mostrarError("message", "El mensaje debe tener al menos 10 caracteres.");
+    } else if (message.length > 1000) {
+      mostrarError("message", "El mensaje no puede exceder 1000 caracteres.");
+    }
+
+    // Validar captcha
     if (!captcha.checked) {
       document.getElementById("error-captcha").textContent = "Debes confirmar que no eres un robot.";
       valid = false;
     }
 
     if (valid) {
-      successMsg.style.display = "block";
-      form.reset();
+      // Mostrar indicador de carga
+      const submitBtn = document.getElementById("submitBtn");
+      const originalText = submitBtn.textContent;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+      submitBtn.disabled = true;
+      
+      // Simular envío
+      setTimeout(() => {
+        successMsg.style.display = "block";
+        form.reset();
+        
+        // Resetear botón
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        
+        // Ocultar mensaje de éxito después de 5 segundos
+        setTimeout(() => {
+          successMsg.style.display = "none";
+        }, 5000);
+      }, 2000);
+    } else {
+      // Hacer scroll al primer error
+      const firstError = document.querySelector(".contact-icon-input.error, .contact-textarea.error");
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
   });
+
+  // Validación en tiempo real - limpiar errores cuando el usuario escribe
+  const fields = ['firstName', 'lastName', 'phone', 'email', 'message'];
+  fields.forEach(fieldId => {
+    const field = document.getElementById(fieldId);
+    if (field) {
+      field.addEventListener('input', () => {
+        const errorElement = document.getElementById(`error-${fieldId}`);
+        if (errorElement) {
+          errorElement.textContent = "";
+        }
+        
+        // Limpiar clase de error
+        if (field.tagName === 'TEXTAREA') {
+          field.classList.remove("error");
+        } else {
+          const iconInput = field.closest('.contact-icon-input');
+          if (iconInput) {
+            iconInput.classList.remove("error");
+          }
+        }
+      });
+    }
+  });
+
+  // Limpiar error de captcha cuando se marca
+  const captcha = document.getElementById("captcha");
+  if (captcha) {
+    captcha.addEventListener('change', () => {
+      if (captcha.checked) {
+        document.getElementById("error-captcha").textContent = "";
+      }
+    });
+  }
+
+  // Prevención de caracteres inválidos en tiempo real
+  const firstNameField = document.getElementById('firstName');
+  const lastNameField = document.getElementById('lastName');
+  const phoneField = document.getElementById('phone');
+  
+  // Solo letras para nombres y apellidos
+  [firstNameField, lastNameField].forEach(field => {
+    if (field) {
+      field.addEventListener('keypress', (e) => {
+        if (!/[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+          e.preventDefault();
+        }
+      });
+      
+      field.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+      });
+    }
+  });
+  
+  // Solo números, +, -, (, ), espacios para teléfono
+  if (phoneField) {
+    phoneField.addEventListener('keypress', (e) => {
+      if (!/[0-9+\-\s()]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  }
 }
 
 // Inicializar comportamiento del Register
@@ -1943,7 +2097,7 @@ function initTallerModals() {
         { 
           id: "inscripcion-email", 
           msg: "Correo electrónico inválido.",
-          validator: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+          validator: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) 
         },
         { 
           id: "inscripcion-codigo", 
