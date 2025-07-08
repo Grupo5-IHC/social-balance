@@ -1,10 +1,21 @@
 :root {
+    /* Colores principales */
     --verde-turquesa: #2B7A78;
     --verde-oscuro: #1C4C4C;
     --verde-petroleo: #3E7C74;
+    --verde-principal: #2E8A85;
     --blanco: #FFFFFF;
     --negro: #121721;
-
+    
+    /* Colores adicionales */
+    --dorado: #FFD700;
+    --gris-claro: #F5F5F5;
+    --gris-medio: #E0E0E0;
+    
+    /* Colores de texto */
+    --texto-principal: #333333;
+    --texto-secundario: #666666;
+    --texto-claro: #FFFFFF;
 }
 
 /* Reset y estilos base */

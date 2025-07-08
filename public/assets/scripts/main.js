@@ -240,6 +240,7 @@ function handleRouting() {
         initCatalogoTalleres(); 
         initTipDiario();
         initTipsAnteriores();
+        initSuscripciones();
         break;
       case 'about': 
         initAbout(); 
@@ -252,7 +253,14 @@ function handleRouting() {
         initFAQ(); 
         break;
       case 'contact': inicializarContact(); break;
-      case 'register': initRegister(); break;
+      case 'register': 
+        initRegister(); 
+        // Inicializar eventos de descarga después de cargar la página
+        setTimeout(() => {
+          initDownloadAppEvents();
+          initDownloadBanner();
+        }, 100);
+        break;
     }
 
     // Manejar scroll con offset del header
@@ -665,41 +673,195 @@ function inicializarContact() {
     e.preventDefault();
 
     let valid = true;
-    const checks = [
-      { id: "firstName", validator: v => v.trim() !== "", msg: "El nombre es obligatorio." },
-      { id: "lastName", validator: v => v.trim() !== "", msg: "El apellido es obligatorio." },
-      { id: "phone", validator: v => v.trim() !== "", msg: "El número es obligatorio." },
-      { id: "email", validator: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), msg: "Correo electrónico inválido." },
-      { id: "message", validator: v => v.trim() !== "", msg: "El mensaje es obligatorio." },
-    ];
-
-    // Limpia mensajes anteriores
-    checks.forEach(c => {
-      document.getElementById(`error-${c.id}`).textContent = "";
+    
+    // Limpiar errores y clases de error previos
+    const errorElements = document.querySelectorAll(".contact-error-message");
+    errorElements.forEach(error => {
+      error.textContent = "";
     });
-    document.getElementById("error-captcha").textContent = "";
+    
+    // Limpiar clases de error de inputs
+    const iconInputs = document.querySelectorAll(".contact-icon-input");
+    iconInputs.forEach(input => {
+      input.classList.remove("error");
+    });
+    
+    const textarea = document.querySelector(".contact-textarea");
+    if (textarea) {
+      textarea.classList.remove("error");
+    }
 
-    // Valida campos
-    checks.forEach(c => {
-      const val = document.getElementById(c.id).value;
-      if (!c.validator(val)) {
-        document.getElementById(`error-${c.id}`).textContent = c.msg;
-        valid = false;
+    // Función para mostrar error
+    function mostrarError(fieldId, mensaje) {
+      const errorElement = document.getElementById(`error-${fieldId}`);
+      if (errorElement) {
+        errorElement.textContent = mensaje;
       }
-    });
+      
+      // Agregar clase de error al contenedor apropiado
+      const field = document.getElementById(fieldId);
+      if (field) {
+        if (field.tagName === 'TEXTAREA') {
+          field.classList.add("error");
+        } else {
+          const iconInput = field.closest('.contact-icon-input');
+          if (iconInput) {
+            iconInput.classList.add("error");
+          }
+        }
+      }
+      valid = false;
+    }
 
-    // Valida captcha
+    // Validaciones mejoradas
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
     const captcha = document.getElementById("captcha");
+
+    // Validar nombres
+    if (!firstName) {
+      mostrarError("firstName", "El nombre es obligatorio.");
+    } else if (firstName.length < 2) {
+      mostrarError("firstName", "El nombre debe tener al menos 2 caracteres.");
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(firstName)) {
+      mostrarError("firstName", "El nombre solo debe contener letras.");
+    }
+
+    // Validar apellidos
+    if (!lastName) {
+      mostrarError("lastName", "El apellido es obligatorio.");
+    } else if (lastName.length < 2) {
+      mostrarError("lastName", "El apellido debe tener al menos 2 caracteres.");
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(lastName)) {
+      mostrarError("lastName", "El apellido solo debe contener letras.");
+    }
+
+    // Validar teléfono
+    if (!phone) {
+      mostrarError("phone", "El número de teléfono es obligatorio.");
+    } else if (!/^[0-9+\-\s()]+$/.test(phone)) {
+      mostrarError("phone", "Formato de teléfono inválido.");
+    } else if (phone.replace(/[^0-9]/g, '').length < 8) {
+      mostrarError("phone", "El número debe tener al menos 8 dígitos.");
+    }
+
+    // Validar email
+    if (!email) {
+      mostrarError("email", "El correo electrónico es obligatorio.");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      mostrarError("email", "Formato de correo electrónico inválido.");
+    }
+
+    // Validar mensaje
+    if (!message) {
+      mostrarError("message", "El mensaje es obligatorio.");
+    } else if (message.length < 10) {
+      mostrarError("message", "El mensaje debe tener al menos 10 caracteres.");
+    } else if (message.length > 1000) {
+      mostrarError("message", "El mensaje no puede exceder 1000 caracteres.");
+    }
+
+    // Validar captcha
     if (!captcha.checked) {
       document.getElementById("error-captcha").textContent = "Debes confirmar que no eres un robot.";
       valid = false;
     }
 
     if (valid) {
-      successMsg.style.display = "block";
-      form.reset();
+      // Mostrar indicador de carga
+      const submitBtn = document.getElementById("submitBtn");
+      const originalText = submitBtn.textContent;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+      submitBtn.disabled = true;
+      
+      // Simular envío
+      setTimeout(() => {
+        successMsg.style.display = "block";
+        form.reset();
+        
+        // Resetear botón
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        
+        // Ocultar mensaje de éxito después de 5 segundos
+        setTimeout(() => {
+          successMsg.style.display = "none";
+        }, 5000);
+      }, 2000);
+    } else {
+      // Hacer scroll al primer error
+      const firstError = document.querySelector(".contact-icon-input.error, .contact-textarea.error");
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
   });
+
+  // Validación en tiempo real - limpiar errores cuando el usuario escribe
+  const fields = ['firstName', 'lastName', 'phone', 'email', 'message'];
+  fields.forEach(fieldId => {
+    const field = document.getElementById(fieldId);
+    if (field) {
+      field.addEventListener('input', () => {
+        const errorElement = document.getElementById(`error-${fieldId}`);
+        if (errorElement) {
+          errorElement.textContent = "";
+        }
+        
+        // Limpiar clase de error
+        if (field.tagName === 'TEXTAREA') {
+          field.classList.remove("error");
+        } else {
+          const iconInput = field.closest('.contact-icon-input');
+          if (iconInput) {
+            iconInput.classList.remove("error");
+          }
+        }
+      });
+    }
+  });
+
+  // Limpiar error de captcha cuando se marca
+  const captcha = document.getElementById("captcha");
+  if (captcha) {
+    captcha.addEventListener('change', () => {
+      if (captcha.checked) {
+        document.getElementById("error-captcha").textContent = "";
+      }
+    });
+  }
+
+  // Prevención de caracteres inválidos en tiempo real
+  const firstNameField = document.getElementById('firstName');
+  const lastNameField = document.getElementById('lastName');
+  const phoneField = document.getElementById('phone');
+  
+  // Solo letras para nombres y apellidos
+  [firstNameField, lastNameField].forEach(field => {
+    if (field) {
+      field.addEventListener('keypress', (e) => {
+        if (!/[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+          e.preventDefault();
+        }
+      });
+      
+      field.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+      });
+    }
+  });
+  
+  // Solo números, +, -, (, ), espacios para teléfono
+  if (phoneField) {
+    phoneField.addEventListener('keypress', (e) => {
+      if (!/[0-9+\-\s()]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  }
 }
 
 // Inicializar comportamiento del Register
@@ -1351,7 +1513,7 @@ function initCarruselTestimonios() {
     // Limitar el movimiento máximo para evitar descontrol
     diffPercent = Math.max(-50, Math.min(50, diffPercent));
     
-    // Aplicar el desplazamiento temporal con suavizado
+    // Aplicar el desplazamiento temporal with suavizado
     carruselLista.style.transform = `translateX(${initialTransform + diffPercent}%)`;
     
     e.preventDefault();
@@ -1942,7 +2104,7 @@ function initTallerModals() {
         { 
           id: "inscripcion-email", 
           msg: "Correo electrónico inválido.",
-          validator: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)
+          validator: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) 
         },
         { 
           id: "inscripcion-codigo", 
@@ -2036,6 +2198,139 @@ function initTallerModals() {
   });
 }
 
+// Inicializar eventos de descarga de app (US44) - llamado desde handleRouting
+function initDownloadAppEvents() {
+  const downloadModalOverlay = document.getElementById('downloadModalOverlay');
+  const downloadModalClose = document.getElementById('downloadModalClose');
+  
+  // Solo ejecutar si existe el modal
+  if (!downloadModalOverlay) {
+    return;
+  }
+  
+  // Función para manejar clics en los botones principales de descarga
+  function handleMainDownloadClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Siempre mostrar el modal (tanto en desktop como en móvil)
+    if (downloadModalOverlay) {
+      downloadModalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  // Función para cerrar el modal
+  function closeDownloadModal() {
+    if (downloadModalOverlay) {
+      downloadModalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  
+  // Agregar event listeners a todos los botones de descarga
+  const allDownloadButtons = document.querySelectorAll('.download-app-btn');
+  
+  allDownloadButtons.forEach((button) => {
+    // Remover event listeners previos si existen
+    button.removeEventListener('click', handleMainDownloadClick);
+    button.addEventListener('click', handleMainDownloadClick);
+  });
+  
+  // Event listeners para cerrar el modal
+  if (downloadModalClose) {
+    downloadModalClose.removeEventListener('click', closeDownloadModal);
+    downloadModalClose.addEventListener('click', closeDownloadModal);
+  }
+  
+  // Cerrar modal al hacer clic en el overlay
+  downloadModalOverlay.removeEventListener('click', handleOverlayClick);
+  downloadModalOverlay.addEventListener('click', handleOverlayClick);
+  
+  function handleOverlayClick(e) {
+    if (e.target === downloadModalOverlay) {
+      closeDownloadModal();
+    }
+  }
+  
+  // Cerrar modal con tecla Escape (solo agregar una vez)
+  document.removeEventListener('keydown', handleEscapeKey);
+  document.addEventListener('keydown', handleEscapeKey);
+  
+  function handleEscapeKey(e) {
+    if (e.key === 'Escape' && downloadModalOverlay && downloadModalOverlay.classList.contains('active')) {
+      closeDownloadModal();
+    }
+  }
+}
+
+// Funcionalidad para el banner flotante de descarga de app (US44)
+function initDownloadBanner() {
+  const downloadAppSection = document.getElementById('downloadAppSection');
+  const floatingBanner = document.getElementById('downloadFloatingBanner');
+  const downloadBannerBtn = document.getElementById('downloadBannerBtn');
+  const downloadModalOverlay = document.getElementById('downloadModalOverlay');
+  
+  // Solo ejecutar si existe la sección de descarga (página de registro)
+  if (!downloadAppSection || !floatingBanner) return;
+  
+  let isScrolledDown = false;
+  
+  // Función para detectar si es dispositivo móvil
+  function isMobile() {
+    return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+  
+  // Función para mostrar/ocultar el banner flotante según el scroll
+  function toggleFloatingBanner() {
+    const sectionRect = downloadAppSection.getBoundingClientRect();
+    const sectionBottom = sectionRect.bottom;
+    
+    // Mostrar banner flotante cuando la sección principal salga de vista
+    if (sectionBottom < 0 && !isScrolledDown) {
+      isScrolledDown = true;
+      floatingBanner.classList.add('show');
+    } else if (sectionBottom >= 0 && isScrolledDown) {
+      isScrolledDown = false;
+      floatingBanner.classList.remove('show');
+    }
+  }
+  
+  // Función para manejar el clic en el botón del banner flotante
+  function handleFloatingBannerClick() {
+    if (isMobile()) {
+      // En móvil: detectar OS y redirigir directamente
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      
+      if (/android/i.test(userAgent)) {
+        // Android
+        window.open('https://play.google.com/store/apps/details?id=com.socialbalance.app', '_blank');
+      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        // iOS
+        window.open('https://apps.apple.com/app/social-balance/id123456789', '_blank');
+      } else {
+        // Fallback para otros móviles
+        window.open('https://play.google.com/store/apps/details?id=com.socialbalance.app', '_blank');
+      }
+    } else {
+      // En escritorio: mostrar modal con QR codes
+      if (downloadModalOverlay) {
+        downloadModalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+  }
+  
+  // Event listeners
+  window.removeEventListener('scroll', toggleFloatingBanner);
+  window.addEventListener('scroll', toggleFloatingBanner, { passive: true });
+  
+  if (downloadBannerBtn) {
+    downloadBannerBtn.removeEventListener('click', handleFloatingBannerClick);
+    downloadBannerBtn.addEventListener('click', handleFloatingBannerClick);
+  }
+}
+
 // Inicializar todos los contenios al cargar la página
 document.addEventListener('DOMContentLoaded', function() {
   loadHTML("ld-header", "header.html", initHeader);
@@ -2094,12 +2389,405 @@ function initTipDiario() {
       });
       tipFecha.textContent = fechaFormateada;
       
-      // Actualizar imagen (placeholder si no existe)
-      tipImagen.src = `https://via.placeholder.com/140x140/2B7A78/FFFFFF?text=${tip.categoria}`;
+      // Actualizar imagen
+      tipImagen.src = tip.imagen;
       tipImagen.alt = `Ilustración para ${tip.titulo}`;
     }
   }
 
   // Inicializar
   mostrarTipDelDia();
+}
+
+// Inicializar comportamiento de las suscripciones (US49 & US50)
+function initSuscripciones() {
+  // Intentar múltiples veces en caso de que el DOM no esté completamente cargado
+  const tryInit = () => {
+    const elegirPremiumBtn = document.getElementById('elegir-premium');
+    const suscripcionModal = document.getElementById('suscripcion-modal');
+    const closeSuscripcionModal = document.getElementById('close-suscripcion-modal');
+    const suscripcionForm = document.getElementById('suscripcion-form');
+    const suscripcionExito = document.getElementById('suscripcion-exito');
+    const suscripcionError = document.getElementById('suscripcion-error');
+    const cerrarSuscripcionExito = document.getElementById('cerrar-suscripcion-exito');
+    const cerrarSuscripcionError = document.getElementById('cerrar-suscripcion-error');
+    
+    if (!elegirPremiumBtn || !suscripcionModal) {
+      setTimeout(tryInit, 100);
+      return;
+    }
+
+  // Array para simular correos ya registrados
+  const correosRegistrados = [
+    'juan.perez@upc.edu.pe',
+    'maria.garcia@pucp.edu.pe',
+    'carlos.rodriguez@usil.edu.pe'
+  ];
+
+  // Abrir modal de suscripción Premium
+  if (elegirPremiumBtn) {
+    elegirPremiumBtn.addEventListener('click', () => {
+      suscripcionModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // Cerrar modal
+  function cerrarModal() {
+    suscripcionModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    // Resetear formulario y mensajes
+    if (suscripcionForm) suscripcionForm.reset();
+    if (suscripcionExito) suscripcionExito.style.display = 'none';
+    if (suscripcionError) suscripcionError.style.display = 'none';
+    
+    // Limpiar errores
+    document.querySelectorAll('.error-message').forEach(error => {
+      error.textContent = '';
+    });
+  }
+
+  if (closeSuscripcionModal) {
+    closeSuscripcionModal.addEventListener('click', cerrarModal);
+  }
+
+  if (cerrarSuscripcionExito) {
+    cerrarSuscripcionExito.addEventListener('click', cerrarModal);
+  }
+
+  if (cerrarSuscripcionError) {
+    cerrarSuscripcionError.addEventListener('click', cerrarModal);
+  }
+
+  // Cerrar modal al hacer clic fuera
+  if (suscripcionModal) {
+    suscripcionModal.addEventListener('click', (e) => {
+      if (e.target === suscripcionModal) {
+        cerrarModal();
+      }
+    });
+  }
+
+  // Formatear número de tarjeta
+  const numeroTarjetaInput = document.getElementById('numero-tarjeta');
+  if (numeroTarjetaInput) {
+    numeroTarjetaInput.addEventListener('input', (e) => {
+      // Solo permitir números
+      let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+      
+      // Limitar a 19 dígitos máximo
+      value = value.substring(0, 19);
+      
+      // Formatear con espacios cada 4 dígitos
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+      
+      e.target.value = formattedValue;
+    });
+    
+    // Prevenir caracteres no numéricos
+    numeroTarjetaInput.addEventListener('keypress', (e) => {
+      if (!/[0-9\s]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  }
+
+  // Formatear fecha de expiración
+  const fechaExpiracionInput = document.getElementById('fecha-expiracion');
+  if (fechaExpiracionInput) {
+    fechaExpiracionInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/\D/g, '');
+      
+      // Limitar a 4 dígitos
+      value = value.substring(0, 4);
+      
+      // Formatear automáticamente MM/AA
+      if (value.length >= 2) {
+        const mes = value.substring(0, 2);
+        const año = value.substring(2, 4);
+        
+        // Validar mes (01-12)
+        if (parseInt(mes) > 12) {
+          value = '12' + año;
+        } else if (parseInt(mes) === 0) {
+          value = '01' + año;
+        }
+        
+        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+      }
+      
+      e.target.value = value;
+    });
+    
+    // Prevenir caracteres no numéricos excepto /
+    fechaExpiracionInput.addEventListener('keypress', (e) => {
+      if (!/[0-9\/]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  }
+
+  // Solo números para CVV
+  const cvvInput = document.getElementById('cvv');
+  if (cvvInput) {
+    cvvInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '').substring(0, 4);
+    });
+    
+    // Prevenir caracteres no numéricos
+    cvvInput.addEventListener('keypress', (e) => {
+      if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  }
+
+  // Formatear nombre del titular (solo letras, espacios y acentos)
+  const titularInput = document.getElementById('titular-tarjeta');
+  if (titularInput) {
+    titularInput.addEventListener('input', (e) => {
+      // Permitir solo letras, espacios y caracteres acentuados
+      e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+    });
+    
+    // Prevenir caracteres no válidos
+    titularInput.addEventListener('keypress', (e) => {
+      if (!/[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/.test(e.key) && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+  }
+
+  // Validar formulario
+  if (suscripcionForm) {
+    suscripcionForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      let isValid = true;
+      
+      // Limpiar errores previos y clases de error
+      document.querySelectorAll('.error-message').forEach(error => {
+        error.textContent = '';
+      });
+      document.querySelectorAll('.suscripcion-form input').forEach(input => {
+        input.classList.remove('error');
+      });
+
+      // Obtener valores de los campos
+      const email = document.getElementById('suscripcion-email').value.trim();
+      const numeroTarjeta = document.getElementById('numero-tarjeta').value.replace(/\s/g, '');
+      const titularTarjeta = document.getElementById('titular-tarjeta').value.trim();
+      const fechaExpiracion = document.getElementById('fecha-expiracion').value.trim();
+      const cvv = document.getElementById('cvv').value.trim();
+
+      // Función para mostrar error y agregar clase de error
+      function mostrarError(campoId, mensaje) {
+        const campo = document.getElementById(campoId);
+        const errorElement = document.getElementById(`error-${campoId}`);
+        if (campo) campo.classList.add('error');
+        if (errorElement) errorElement.textContent = mensaje;
+        isValid = false;
+      }
+
+      // Validar email
+      if (!email) {
+        mostrarError('suscripcion-email', 'El correo electrónico es obligatorio.');
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        mostrarError('suscripcion-email', 'Ingresa un correo electrónico válido.');
+      } else if (!email.includes('.edu.pe') && !email.includes('@upc.') && !email.includes('@pucp.') && !email.includes('@usil.')) {
+        mostrarError('suscripcion-email', 'Usa tu correo universitario (ejemplo: @upc.edu.pe).');
+      } else if (correosRegistrados.includes(email.toLowerCase())) {
+        // Mostrar mensaje de error para correo duplicado
+        suscripcionForm.style.display = 'none';
+        suscripcionError.style.display = 'block';
+        return;
+      }
+
+      // Validar número de tarjeta
+      if (!numeroTarjeta) {
+        mostrarError('numero-tarjeta', 'El número de tarjeta es obligatorio.');
+      } else if (!/^[0-9]+$/.test(numeroTarjeta)) {
+        mostrarError('numero-tarjeta', 'El número de tarjeta solo debe contener dígitos.');
+      } else if (numeroTarjeta.length < 13 || numeroTarjeta.length > 19) {
+        mostrarError('numero-tarjeta', 'El número de tarjeta debe tener entre 13 y 19 dígitos.');
+      } else {
+        // Validación básica de algoritmo de Luhn para números de tarjeta
+        let suma = 0;
+        let alternate = false;
+        for (let i = numeroTarjeta.length - 1; i >= 0; i--) {
+          let n = parseInt(numeroTarjeta.charAt(i), 10);
+          if (alternate) {
+            n *= 2;
+            if (n > 9) {
+              n = (n % 10) + 1;
+            }
+          }
+          suma += n;
+          alternate = !alternate;
+        }
+        if (suma % 10 !== 0) {
+          mostrarError('numero-tarjeta', 'Número de tarjeta inválido.');
+        }
+      }
+
+      // Validar titular
+      if (!titularTarjeta) {
+        mostrarError('titular-tarjeta', 'El nombre del titular es obligatorio.');
+      } else if (titularTarjeta.length < 2) {
+        mostrarError('titular-tarjeta', 'El nombre debe tener al menos 2 caracteres.');
+      } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(titularTarjeta)) {
+        mostrarError('titular-tarjeta', 'El nombre solo debe contener letras y espacios.');
+      }
+
+      // Validar fecha de expiración
+      if (!fechaExpiracion) {
+        mostrarError('fecha-expiracion', 'La fecha de expiración es obligatoria.');
+      } else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(fechaExpiracion)) {
+        mostrarError('fecha-expiracion', 'Formato inválido. Use MM/AA (ej: 12/25).');
+      } else {
+        // Validar que la fecha no esté vencida
+        const [mes, año] = fechaExpiracion.split('/');
+        const fechaTarjeta = new Date(2000 + parseInt(año), parseInt(mes) - 1);
+        const fechaActual = new Date();
+        fechaActual.setDate(1); // Primer día del mes actual
+        
+        if (fechaTarjeta < fechaActual) {
+          mostrarError('fecha-expiracion', 'La tarjeta está vencida.');
+        } else if (parseInt(año) < 25 || parseInt(año) > 35) {
+          mostrarError('fecha-expiracion', 'Año inválido. Use un año entre 25 y 35.');
+        }
+      }
+
+      // Validar CVV
+      if (!cvv) {
+        mostrarError('cvv', 'El CVV es obligatorio.');
+      } else if (!/^[0-9]+$/.test(cvv)) {
+        mostrarError('cvv', 'El CVV solo debe contener números.');
+      } else if (cvv.length < 3 || cvv.length > 4) {
+        mostrarError('cvv', 'El CVV debe tener 3 o 4 dígitos.');
+      }
+
+      if (isValid) {
+        // Mostrar indicador de carga
+        const submitBtn = suscripcionForm.querySelector('.submit-suscripcion-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+        submitBtn.disabled = true;
+        
+        // Simular procesamiento de pago
+        setTimeout(() => {
+          suscripcionForm.style.display = 'none';
+          suscripcionExito.style.display = 'block';
+          
+          // Agregar el correo a la lista de registrados (simulación)
+          correosRegistrados.push(email.toLowerCase());
+          
+          // Resetear botón
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }, 2000);
+      } else {
+        // Hacer scroll al primer error
+        const firstError = suscripcionForm.querySelector('.error');
+        if (firstError) {
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstError.focus();
+        }
+      }
+    });
+  }
+
+  // Limpiar errores cuando el usuario empieza a escribir
+  const campos = [
+    'suscripcion-email',
+    'numero-tarjeta', 
+    'titular-tarjeta',
+    'fecha-expiracion',
+    'cvv'
+  ];
+
+  campos.forEach(campoId => {
+    const campo = document.getElementById(campoId);
+    if (campo) {
+      // Limpiar errores al empezar a escribir
+      campo.addEventListener('input', () => {
+        const errorElement = document.getElementById(`error-${campoId}`);
+        if (errorElement) {
+          errorElement.textContent = '';
+        }
+        campo.classList.remove('error');
+      });
+
+      // Validación en tiempo real para algunos campos
+      campo.addEventListener('blur', () => {
+        validateField(campoId);
+      });
+    }
+  });
+
+  // Función para validar un campo individual
+  function validateField(campoId) {
+    const campo = document.getElementById(campoId);
+    const errorElement = document.getElementById(`error-${campoId}`);
+    const value = campo.value.trim();
+    
+    // Limpiar error previo
+    if (errorElement) errorElement.textContent = '';
+    campo.classList.remove('error');
+
+    function showFieldError(mensaje) {
+      if (errorElement) errorElement.textContent = mensaje;
+      campo.classList.add('error');
+    }
+
+    switch(campoId) {
+      case 'suscripcion-email':
+        if (value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          showFieldError('Formato de correo inválido.');
+        } else if (value && !value.includes('.edu.pe') && !value.includes('@upc.') && !value.includes('@pucp.') && !value.includes('@usil.')) {
+          showFieldError('Usa tu correo universitario.');
+        }
+        break;
+      
+      case 'numero-tarjeta':
+        const numeroLimpio = value.replace(/\s/g, '');
+        if (value && (numeroLimpio.length < 13 || numeroLimpio.length > 19)) {
+          showFieldError('El número debe tener entre 13 y 19 dígitos.');
+        }
+        break;
+        
+      case 'titular-tarjeta':
+        if (value && value.length < 2) {
+          showFieldError('Nombre muy corto.');
+        } else if (value && !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(value)) {
+          showFieldError('Solo letras y espacios.');
+        }
+        break;
+        
+      case 'fecha-expiracion':
+        if (value && !/^(0[1-9]|1[0-2])\/\d{2}$/.test(value)) {
+          showFieldError('Formato: MM/AA');
+        }
+        break;
+        
+      case 'cvv':
+        if (value && (value.length < 3 || value.length > 4)) {
+          showFieldError('CVV debe tener 3 o 4 dígitos.');
+        }
+        break;
+    }
+  }
+
+  // Cerrar modal con Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && suscripcionModal.classList.contains('active')) {
+      cerrarModal();
+    }
+  });
+
+  }; // End of tryInit
+
+  // Try to initialize
+  tryInit();
 }

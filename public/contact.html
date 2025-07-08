@@ -2,56 +2,56 @@
     <div class="contact-box">
       <h2>Contáctanos</h2>
       <form id="contactForm" novalidate>
-        <div class="row">
-          <div class="form-group">
-            <div class="icon-input">
+        <div class="contact-row">
+          <div class="contact-form-group">
+            <div class="contact-icon-input">
               <i class="fas fa-user"></i>
-              <input type="text" id="firstName" placeholder="Nombres" required />
+              <input type="text" id="firstName" placeholder="Nombres" />
             </div>
-            <div class="error-message" id="error-firstName"></div>
+            <div class="contact-error-message" id="error-firstName"></div>
           </div>
-          <div class="form-group">
-            <div class="icon-input">
+          <div class="contact-form-group">
+            <div class="contact-icon-input">
               <i class="fas fa-user"></i>
-              <input type="text" id="lastName" placeholder="Apellidos" required />
+              <input type="text" id="lastName" placeholder="Apellidos" />
             </div>
-            <div class="error-message" id="error-lastName"></div>
+            <div class="contact-error-message" id="error-lastName"></div>
           </div>
         </div>
 
-        <div class="row">
-          <div class="form-group">
-            <div class="icon-input">
+        <div class="contact-row">
+          <div class="contact-form-group">
+            <div class="contact-icon-input">
               <i class="fas fa-phone"></i>
-              <input type="tel" id="phone" placeholder="Número de Teléfono" required />
+              <input type="text" id="phone" placeholder="Número de Teléfono" />
             </div>
-            <div class="error-message" id="error-phone"></div>
+            <div class="contact-error-message" id="error-phone"></div>
           </div>
-          <div class="form-group">
-            <div class="icon-input">
+          <div class="contact-form-group">
+            <div class="contact-icon-input">
               <i class="fas fa-envelope"></i>
-              <input type="email" id="email" placeholder="Correo electrónico" required />
+              <input type="text" id="email" placeholder="Correo electrónico" />
             </div>
-            <div class="error-message" id="error-email"></div>
+            <div class="contact-error-message" id="error-email"></div>
           </div>
         </div>
 
-        <div class="form-group">
-          <textarea id="message" rows="5" placeholder="Escriba aquí su mensaje" required></textarea>
-          <div class="error-message" id="error-message"></div>
+        <div class="contact-form-group">
+          <textarea id="message" rows="5" placeholder="Escriba aquí su mensaje" class="contact-textarea"></textarea>
+          <div class="contact-error-message" id="error-message"></div>
         </div>
 
-        <div class="form-group captcha">
+        <div class="contact-form-group contact-captcha">
           <label>
             <i class="fas fa-robot"></i>
             <input type="checkbox" id="captcha" />
             I'm not a robot
           </label>
-          <div class="error-message" id="error-captcha"></div>
+          <div class="contact-error-message" id="error-captcha"></div>
         </div>
 
-        <button type="submit" id="submitBtn">Enviar</button>
-        <div class="success-message" id="successMessage" style="display:none;">
+        <button type="submit" id="submitBtn" class="contact-submit-btn">Enviar</button>
+        <div class="contact-success-message" id="successMessage" style="display:none;">
           ¡Mensaje enviado correctamente!
         </div>
       </form>
