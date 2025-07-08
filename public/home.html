@@ -579,6 +579,231 @@
   </div>
 </section>
 
+<!-- Sección Plan de suscripciones (US49 & US50) -->
+<section class="plan-suscripciones" id="subscripciones">
+  <div class="container">
+    <div class="suscripciones-header">
+      <h2>Plan de suscripciones</h2>
+      <p class="suscripciones-subtitulo">
+        Elige el plan que mejor se adapte a tus necesidades y comienza tu viaje hacia un bienestar digital mejorado.
+      </p>
+    </div>
+
+    <div class="planes-comparativos">
+      <!-- Plan Gratis -->
+      <div class="plan-card plan-gratis">
+        <div class="plan-header">
+          <h3>Gratis</h3>
+          <div class="plan-precio">
+            <span class="precio">S/0.00</span>
+            <span class="periodo">por mes</span>
+          </div>
+        </div>
+
+        <div class="plan-contenido">
+          <div class="plan-seccion">
+            <h4>Contenido básico:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> 5 consejos de bienestar digital cada semana</li>
+              <li><i class="fas fa-check"></i> Acceso a artículos y guías en PDF</li>
+              <li><i class="fas fa-check"></i> Recordatorios por correo (horario fijo)</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Comunidad:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Lectura libre del foro de preguntas frecuentes</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Limitaciones:</h4>
+            <ul class="plan-features limited">
+              <li><i class="fas fa-times"></i> Sin notificaciones push</li>
+              <li><i class="fas fa-times"></i> Sin acceso a talleres exclusivos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="plan-footer">
+          <button class="plan-btn plan-btn-gratis" onclick="window.location.href='#register'">
+            Elegir plan
+          </button>
+        </div>
+      </div>
+
+      <!-- Plan Premium -->
+      <div class="plan-card plan-premium featured">
+        <div class="plan-badge">
+          <span>Más popular</span>
+        </div>
+        
+        <div class="plan-header">
+          <h3>Premium</h3>
+          <div class="plan-precio">
+            <span class="precio">S/75.99</span>
+            <span class="periodo">por mes</span>
+          </div>
+        </div>
+
+        <div class="plan-contenido">
+          <div class="plan-seccion">
+            <h4>Contenido avanzado:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> 10 consejos semanales + casos de estudio y ejercicios prácticos</li>
+              <li><i class="fas fa-check"></i> Guías descargables y mini-cursos trimestrales</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Talleres:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Acceso anticipado y grabaciones de eventos mensuales</li>
+              <li><i class="fas fa-check"></i> Descuento del 50 % en talleres presenciales</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Notificaciones personalizadas:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Recordatorios vía correo electrónico y notificaciones push ajustados a tu zona horaria</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Informes y métricas:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Reporte mensual de tu tiempo de uso digital</li>
+              <li><i class="fas fa-check"></i> Calculadora de progreso con benchmarks y metas personalizados</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Soporte Premium:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Acceso prioritario al canal de chat con expertos</li>
+              <li><i class="fas fa-check"></i> Respuesta garantizada en 24 h para consultas</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="plan-footer">
+          <button class="plan-btn plan-btn-premium" id="elegir-premium">
+            Elegir plan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="suscripciones-cta">
+      <p>¿Tienes dudas sobre cuál plan elegir?</p>
+      <button class="contacto-planes-btn" onclick="window.location.href='#contact'">
+        <i class="fas fa-question-circle"></i>
+        Contáctanos para asesoría
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Modal para suscripción Premium (US50) -->
+<div class="modal-overlay" id="suscripcion-modal">
+  <div class="modal-content suscripcion-modal">
+    <button class="modal-close" id="close-suscripcion-modal">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="modal-header">
+      <h2>Suscríbete a nuestro Boletín de Bienestar Digital</h2>
+      <p>Completa nuestro plan y recibe cada semana consejos exclusivos para desconectarte, mejorar tu productividad y cuidar tu salud mental.</p>
+    </div>
+    
+    <div class="modal-body">
+      <form class="suscripcion-form" id="suscripcion-form" novalidate>
+        <div class="form-group">
+          <label for="suscripcion-email">Correo electrónico:</label>
+          <input type="text" id="suscripcion-email" name="email" placeholder="ejemplo@universidad.edu.pe">
+          <div class="error-message" id="error-suscripcion-email"></div>
+        </div>
+        
+        <div class="plan-seleccionado">
+          <h4>Plan seleccionado: <span class="plan-nombre">Premium</span></h4>
+          <p class="plan-descripcion">S/75.99 por mes - Acceso completo a contenido exclusivo y soporte prioritario</p>
+        </div>
+
+        <div class="form-section">
+          <h4>Datos de pago</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="numero-tarjeta">Número de tarjeta:</label>
+              <input type="text" id="numero-tarjeta" name="numeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19">
+              <div class="error-message" id="error-numero-tarjeta"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="titular-tarjeta">Titular de tarjeta:</label>
+            <input type="text" id="titular-tarjeta" name="titularTarjeta" placeholder="Nombre como aparece en la tarjeta">
+            <div class="error-message" id="error-titular-tarjeta"></div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fecha-expiracion">Fecha de expiración:</label>
+              <input type="text" id="fecha-expiracion" name="fechaExpiracion" placeholder="MM/AA" maxlength="5">
+              <div class="error-message" id="error-fecha-expiracion"></div>
+            </div>
+            
+            <div class="form-group">
+              <label for="cvv">CVV:</label>
+              <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
+              <div class="error-message" id="error-cvv"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="submit-suscripcion-btn">
+            <i class="fas fa-credit-card"></i>
+            Suscribirme
+          </button>
+        </div>
+      </form>
+      
+      <!-- Mensaje de éxito -->
+      <div class="suscripcion-exito" id="suscripcion-exito" style="display: none;">
+        <div class="exito-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3>¡Suscripción confirmada!</h3>
+        <p>Tu suscripción al plan Premium ha sido procesada exitosamente. Recibirás un correo de confirmación y comenzarás a recibir nuestros consejos semanales de bienestar digital.</p>
+        <div class="exito-detalles">
+          <p><strong>Plan:</strong> Premium</p>
+          <p><strong>Precio:</strong> S/75.99/mes</p>
+          <p><strong>Próximo cobro:</strong> 8 de agosto, 2025</p>
+        </div>
+        <button class="cerrar-exito-btn" id="cerrar-suscripcion-exito">
+          <i class="fas fa-times"></i>
+          Cerrar
+        </button>
+      </div>
+
+      <!-- Mensaje de error para correo duplicado -->
+      <div class="suscripcion-error" id="suscripcion-error" style="display: none;">
+        <div class="error-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3>Correo ya suscrito</h3>
+        <p>El correo electrónico que proporcionaste ya está registrado en nuestro sistema. Si necesitas cambiar tu plan o tienes alguna consulta, por favor contáctanos.</p>
+        <button class="cerrar-error-btn" id="cerrar-suscripcion-error">
+          <i class="fas fa-times"></i>
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal para descripción del taller -->
 <div class="modal-overlay" id="taller-modal">
   <div class="modal-content taller-modal">
