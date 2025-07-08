@@ -38,3 +38,914 @@
     </div>
   </div>
 </section>
+
+<section class="puntos-calculator" id="puntos">
+  <div class="container">
+    <div class="calculator-header">
+      <h2>Calculadora de puntos</h2>
+      <p class="calculator-subtitulo">
+        Ingresa cuántas horas al día podrías desconectarte de las redes y visualiza tu progreso estimado.
+      </p>
+    </div>
+
+    <div class="calculator-content">
+      <div class="calculator-card">
+        <div class="calculator-input-section">
+          <label for="hours-input">Número de horas:</label>
+          <input 
+            type="number" 
+            id="hours-input" 
+            min="1" 
+            max="24" 
+            placeholder="Ej: 3" 
+            aria-describedby="hours-help"
+          >
+          <small id="hours-help">Ingresa entre 1 y 24 horas</small>
+        </div>
+
+        <button class="calculate-btn" id="calculate-points">
+          Calcular puntos
+        </button>
+
+        <div class="calculator-result" id="calculator-result" style="display: none;">
+          <div class="result-content">
+            <h3>Resultado estimado:</h3>
+            <div class="points-display">
+              <span class="points-number" id="points-number">0</span>
+              <span class="points-label">puntos por semana</span>
+            </div>
+            <p class="result-explanation" id="result-explanation">
+              Con 3 horas al día sin redes, podrías ganar aproximadamente 150 puntos en una semana.
+            </p>
+            <button class="rewards-btn" id="view-rewards">
+              <i class="fas fa-gift"></i>
+              Ver recompensas disponibles
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sistema-de-puntos" id="sistema-de-puntos">
+  <div class="container">
+    <div class="sistema-header">
+      <h2>¿Cómo funciona el sistema de puntos?</h2>
+      <p class="sistema-subtitulo">
+        Con Social Balance, mejora tu bienestar también te trae beneficios. Te lo explicamos en 4 pasos:
+      </p>
+    </div>
+
+    <div class="pasos-grid">
+      <div class="paso-card" data-step="1">
+        <div class="paso-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="paso-content">
+          <h3>Gana puntos</h3>
+          <p>Apaga redes sociales, asiste a talleres y completa retos diarios</p>
+        </div>
+      </div>
+
+      <div class="paso-card" data-step="2">
+        <div class="paso-icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <div class="paso-content">
+          <h3>Desbloquea niveles</h3>
+          <p>Mientras acumulas puntos, avanzas en tu progreso semanal</p>
+        </div>
+      </div>
+
+      <div class="paso-card" data-step="3">
+        <div class="paso-icon">
+          <i class="fas fa-gift"></i>
+        </div>
+        <div class="paso-content">
+          <h3>Canjea recompensas</h3>
+          <p>Usa tus puntos en cupones, entradas, descuentos y más</p>
+        </div>
+      </div>
+
+      <div class="paso-card" data-step="4">
+        <div class="paso-icon">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <div class="paso-content">
+          <h3>Sigue participando</h3>
+          <p>Nuevos retos cada semana para mantenerte motivado</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sistema-cta">
+      <p>¿Listo para comenzar a ganar recompensas?</p>
+      <button class="vitrina-btn" id="ver-vitrina">
+        <i class="fas fa-gift"></i>
+        Ver vitrina de recompensas
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="vitrina-recompensas" id="recompensas">
+  <div class="container">
+    <div class="vitrina-header">
+      <h2>Vitrina de recompensas</h2>
+      <p class="vitrina-subtitulo">Descubre las recompensas más populares que puedes obtener. Pasa el cursor sobre cada tarjeta para ver los puntos necesarios.</p>
+    </div>
+
+    <div class="vitrina-grid">
+      <div class="reward-card" data-points="50">
+        <div class="reward-image">
+          <img src="assets/images/rewards/bembos-reward.webp" alt="Hamburguesa Bembos">
+        </div>
+        <div class="reward-overlay">
+          <div class="reward-info">
+            <h3>Cupón 20% de descuento en una hamburguesa de BEMBOS</h3>
+            <div class="reward-points">
+              <span class="points-amount">50</span>
+              <span class="points-text">puntos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card" data-points="50">
+        <div class="reward-image">
+          <img src="assets/images/rewards/rappi-reward.webp" alt="Pedido Rappi">
+        </div>
+        <div class="reward-overlay">
+          <div class="reward-info">
+            <h3>Cupón 20% de descuento en un pedido de Rappi</h3>
+            <div class="reward-points">
+              <span class="points-amount">50</span>
+              <span class="points-text">puntos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card" data-points="250">
+        <div class="reward-image">
+          <img src="assets/images/rewards/cinepolis-reward.webp" alt="Entrada Cinépolis">
+        </div>
+        <div class="reward-overlay">
+          <div class="reward-info">
+            <h3>Cupón 2x1 en entradas a Cinépolis</h3>
+            <div class="reward-points">
+              <span class="points-amount">250</span>
+              <span class="points-text">puntos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card" data-points="150">
+        <div class="reward-image">
+          <img src="assets/images/rewards/uber-reward.webp" alt="Viaje Uber">
+        </div>
+        <div class="reward-overlay">
+          <div class="reward-info">
+            <h3>Cupón 50% de descuento en un viaje de Uber</h3>
+            <div class="reward-points">
+              <span class="points-amount">150</span>
+              <span class="points-text">puntos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card" data-points="100">
+        <div class="reward-image">
+          <img src="assets/images/rewards/cinemark-reward.webp" alt="Combo Cinemark">
+        </div>
+        <div class="reward-overlay">
+          <div class="reward-info">
+            <h3>Cupón 35% de descuento en combo 3 Palomita en Cinemark</h3>
+            <div class="reward-points">
+              <span class="points-amount">100</span>
+              <span class="points-text">puntos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card" data-points="100">
+        <div class="reward-image">
+          <img src="assets/images/rewards/upc-reward.webp" alt="Cafetería UPC">
+        </div>
+        <div class="reward-overlay">
+          <div class="reward-info">
+            <h3>Cupón 45% de descuento en la cafetería de la universidad UPC</h3>
+            <div class="reward-points">
+              <span class="points-amount">100</span>
+              <span class="points-text">puntos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card" data-points="50">
+        <div class="reward-image">
+          <img src="assets/images/rewards/pedidosya-reward.webp" alt="PedidosYa">
+        </div>
+        <div class="reward-overlay">
+          <div class="reward-info">
+            <h3>Cupón 30% descuento en tu pedido de PedidosYa</h3>
+            <div class="reward-points">
+              <span class="points-amount">50</span>
+              <span class="points-text">puntos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card" data-points="150">
+        <div class="reward-image">
+          <img src="assets/images/rewards/starbucks-reward.webp" alt="Starbucks">
+        </div>
+        <div class="reward-overlay">
+          <div class="reward-info">
+            <h3>Cupón 40% descuento en cualquier café de Starbucks</h3>
+            <div class="reward-points">
+              <span class="points-amount">150</span>
+              <span class="points-text">puntos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reward-card" data-points="200" data-status="coming-soon">
+        <div class="reward-image">
+          <img src="assets/images/rewards/didi-reward.webp" alt="Viaje DiDi">
+        </div>
+        <div class="coming-soon-label">Próximamente</div>
+        <div class="reward-overlay">
+          <div class="reward-info">
+            <h3>Cupón de 75% de descuento en un viaje en Didi</h3>
+            <div class="reward-points">
+              <span class="points-amount">200</span>
+              <span class="points-text">puntos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="catalogo-talleres" id="talleres">
+  <div class="container">
+    <div class="catalogo-header">
+      <h2>Catálogo de talleres</h2>
+      <p class="catalogo-subtitulo">
+        Descubre talleres disponibles en tu universidad. Desarrolla nuevas habilidades mientras reduces tu tiempo en redes sociales.
+      </p>
+    </div>
+
+    <div class="universidad-selector">
+      <h3>Selecciona tu universidad:</h3>
+      <div class="universidad-buttons">
+        <button class="uni-btn active" data-universidad="upc">
+          <i class="fas fa-university"></i>
+          UPC
+        </button>
+        <button class="uni-btn" data-universidad="usil">
+          <i class="fas fa-university"></i>
+          USIL
+        </button>
+        <button class="uni-btn" data-universidad="pucp">
+          <i class="fas fa-university"></i>
+          PUCP
+        </button>
+        <button class="uni-btn" data-universidad="ulima">
+          <i class="fas fa-university"></i>
+          ULima
+        </button>
+        <button class="uni-btn" data-universidad="up">
+          <i class="fas fa-university"></i>
+          UP
+        </button>
+      </div>
+    </div>
+
+    <div class="talleres-content">
+      <!-- Talleres UPC -->
+      <div class="talleres-grid" data-universidad="upc" style="display: grid;">
+        <div class="taller-card" data-categoria="bienestar">
+          <div class="taller-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <div class="taller-info">
+            <h4>Taller de Meditación</h4>
+            <p>Aprende técnicas de mindfulness para reducir el estrés y mejorar tu concentración.</p>
+            <div class="taller-meta">
+              <span class="duracion"><i class="fas fa-clock"></i> 2 horas</span>
+              <span class="modalidad"><i class="fas fa-users"></i> Presencial</span>
+            </div>
+          </div>
+          <div class="taller-action">
+            <button class="inscribir-btn">Inscribirse</button>
+          </div>
+        </div>
+
+        <div class="taller-card" data-categoria="tech">
+          <div class="taller-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="taller-info">
+            <h4>Taller de Ciberseguridad</h4>
+            <p>Protege tu información digital y aprende sobre seguridad en línea.</p>
+            <div class="taller-meta">
+              <span class="duracion"><i class="fas fa-clock"></i> 3 horas</span>
+              <span class="modalidad"><i class="fas fa-laptop"></i> Virtual</span>
+            </div>
+          </div>
+          <div class="taller-action">
+            <button class="inscribir-btn">Inscribirse</button>
+          </div>
+        </div>
+
+        <div class="taller-card" data-categoria="academico">
+          <div class="taller-icon">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <div class="taller-info">
+            <h4>Taller de Matemáticas</h4>
+            <p>Refuerza tus conocimientos matemáticos con ejercicios prácticos y dinámicos.</p>
+            <div class="taller-meta">
+              <span class="duracion"><i class="fas fa-clock"></i> 2.5 horas</span>
+              <span class="modalidad"><i class="fas fa-users"></i> Presencial</span>
+            </div>
+          </div>
+          <div class="taller-action">
+            <button class="inscribir-btn">Inscribirse</button>
+          </div>
+        </div>
+
+        <div class="taller-card" data-categoria="creatividad">
+          <div class="taller-icon">
+            <i class="fas fa-pen-fancy"></i>
+          </div>
+          <div class="taller-info">
+            <h4>Taller de Escritura Creativa</h4>
+            <p>Desarrolla tu creatividad y habilidades narrativas en un ambiente colaborativo.</p>
+            <div class="taller-meta">
+              <span class="duracion"><i class="fas fa-clock"></i> 2 horas</span>
+              <span class="modalidad"><i class="fas fa-users"></i> Presencial</span>
+            </div>
+          </div>
+          <div class="taller-action">
+            <button class="inscribir-btn">Inscribirse</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Talleres USIL -->
+      <div class="talleres-grid" data-universidad="usil" style="display: none;">
+        <div class="taller-card" data-categoria="negocio">
+          <div class="taller-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="taller-info">
+            <h4>Taller de Marketing Digital</h4>
+            <p>Aprende estrategias modernas de marketing digital y redes sociales profesionales.</p>
+            <div class="taller-meta">
+              <span class="duracion"><i class="fas fa-clock"></i> 4 horas</span>
+              <span class="modalidad"><i class="fas fa-laptop"></i> Virtual</span>
+            </div>
+          </div>
+          <div class="taller-action">
+            <button class="inscribir-btn">Inscribirse</button>
+          </div>
+        </div>
+
+        <div class="taller-card" data-categoria="deporte">
+          <div class="taller-icon">
+            <i class="fas fa-running"></i>
+          </div>
+          <div class="taller-info">
+            <h4>Taller de Atletismo</h4>
+            <p>Mejora tu condición física y aprende técnicas de atletismo en un ambiente divertido.</p>
+            <div class="taller-meta">
+              <span class="duracion"><i class="fas fa-clock"></i> 1.5 horas</span>
+              <span class="modalidad"><i class="fas fa-users"></i> Presencial</span>
+            </div>
+          </div>
+          <div class="taller-action">
+            <button class="inscribir-btn">Inscribirse</button>
+          </div>
+        </div>
+
+        <div class="taller-card" data-categoria="tech">
+          <div class="taller-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="taller-info">
+            <h4>Taller de Arquitectura Sostenible</h4>
+            <p>Explora conceptos de arquitectura verde y diseño sostenible para el futuro.</p>
+            <div class="taller-meta">
+              <span class="duracion"><i class="fas fa-clock"></i> 3 horas</span>
+              <span class="modalidad"><i class="fas fa-users"></i> Presencial</span>
+            </div>
+          </div>
+          <div class="taller-action">
+            <button class="inscribir-btn">Inscribirse</button>
+          </div>
+        </div>
+
+        <div class="taller-card" data-categoria="negocio">
+          <div class="taller-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="taller-info">
+            <h4>Taller de Emprendimiento</h4>
+            <p>Desarrolla tu idea de negocio y aprende herramientas prácticas para emprendedores.</p>
+            <div class="taller-meta">
+              <span class="duracion"><i class="fas fa-clock"></i> 3.5 horas</span>
+              <span class="modalidad"><i class="fas fa-laptop"></i> Virtual</span>
+            </div>
+          </div>
+          <div class="taller-action">
+            <button class="inscribir-btn">Inscribirse</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mensaje para universidades sin talleres -->
+      <div class="no-talleres" data-universidad="pucp" style="display: none;">
+        <div class="no-talleres-content">
+          <i class="fas fa-calendar-times"></i>
+          <h3>Próximamente</h3>
+          <p>Estamos trabajando para traer talleres increíbles a esta universidad. ¡Mantente atento!</p>
+        </div>
+      </div>
+
+      <div class="no-talleres" data-universidad="ulima" style="display: none;">
+        <div class="no-talleres-content">
+          <i class="fas fa-calendar-times"></i>
+          <h3>Próximamente</h3>
+          <p>Estamos trabajando para traer talleres increíbles a esta universidad. ¡Mantente atento!</p>
+        </div>
+      </div>
+
+      <div class="no-talleres" data-universidad="up" style="display: none;">
+        <div class="no-talleres-content">
+          <i class="fas fa-calendar-times"></i>
+          <h3>Próximamente</h3>
+          <p>Estamos trabajando para traer talleres increíbles a esta universidad. ¡Mantente atento!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="catalogo-cta">
+      <p>¿Tu universidad no está en la lista?</p>
+      <button class="contacto-btn" onclick="window.location.href='#contact'">
+        <i class="fas fa-envelope"></i>
+        Contáctanos
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Tip del día (US47) -->
+<section class="tip-diario" id="tip-diario">
+  <div class="container">
+    <div class="tip-header">
+      <h2>Tip del día</h2>
+      <p class="tip-subtitulo">Cada jornada, un consejo para ayudarte a desconectarte y mejorar tu bienestar digital.</p>
+    </div>
+
+    <div class="tip-content">
+      <div class="tip-card-principal">
+        <div class="tip-icon-container">
+          <div class="tip-icon" id="tip-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+        </div>
+        
+        <div class="tip-info">
+          <h3 id="tip-titulo">Organiza descansos de 5 min cada 50 min de pantalla para mantener tu concentración.</h3>
+          <p id="tip-descripcion">Organiza descansos de 5 min cada 50 min de pantalla para mantener tu concentración.</p>
+          <div class="tip-meta">
+            <span class="tip-fecha" id="tip-fecha">7 de julio, 2025</span>
+            <span class="tip-categoria" id="tip-categoria">Productividad</span>
+          </div>
+        </div>
+        
+        <div class="tip-ilustracion">
+          <div class="tip-image-container">
+            <img id="tip-imagen" src="assets/images/tips/tip-concentracion.webp" alt="Ilustración del tip">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Tips anteriores (US48) -->
+<section class="tips-anteriores" id="tips-anteriores">
+  <div class="container">
+    <!-- Header con título centrado -->
+    <div class="tips-header-center">
+      <h2>Tips anteriores</h2>
+    </div>
+
+    <!-- Carrusel de tips -->
+    <div class="tips-carousel-wrapper">
+      <div class="tips-carousel-track" id="tips-carousel">
+        <!-- Los tips se cargarán dinámicamente aquí -->
+      </div>
+    </div>
+
+    <!-- Navegación centrada debajo del carrusel -->
+    <div class="tips-navigation-inline">
+      <button class="nav-btn-simple prev-btn" id="tips-prev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="nav-btn-simple next-btn" id="tips-next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Botón centrado al final -->
+    <div class="tips-footer-center">
+      <button onclick="initTipsAnteriores()" class="ver-mas-tips-btn" id="ver-mas-tips">
+        Ver más tips 📚
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Sección Plan de suscripciones (US49 & US50) -->
+<section class="plan-suscripciones" id="subscripciones">
+  <div class="container">
+    <div class="suscripciones-header">
+      <h2>Plan de suscripciones</h2>
+      <p class="suscripciones-subtitulo">
+        Elige el plan que mejor se adapte a tus necesidades y comienza tu viaje hacia un bienestar digital mejorado.
+      </p>
+    </div>
+
+    <div class="planes-comparativos">
+      <!-- Plan Gratis -->
+      <div class="plan-card plan-gratis">
+        <div class="plan-header">
+          <h3>Gratis</h3>
+          <div class="plan-precio">
+            <span class="precio">S/0.00</span>
+            <span class="periodo">por mes</span>
+          </div>
+        </div>
+
+        <div class="plan-contenido">
+          <div class="plan-seccion">
+            <h4>Contenido básico:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> 5 consejos de bienestar digital cada semana</li>
+              <li><i class="fas fa-check"></i> Acceso a artículos y guías en PDF</li>
+              <li><i class="fas fa-check"></i> Recordatorios por correo (horario fijo)</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Comunidad:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Lectura libre del foro de preguntas frecuentes</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Limitaciones:</h4>
+            <ul class="plan-features limited">
+              <li><i class="fas fa-times"></i> Sin notificaciones push</li>
+              <li><i class="fas fa-times"></i> Sin acceso a talleres exclusivos</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="plan-footer">
+          <button class="plan-btn plan-btn-gratis" onclick="window.location.href='#register'">
+            Elegir plan
+          </button>
+        </div>
+      </div>
+
+      <!-- Plan Premium -->
+      <div class="plan-card plan-premium featured">
+        <div class="plan-badge">
+          <span>Más popular</span>
+        </div>
+        
+        <div class="plan-header">
+          <h3>Premium</h3>
+          <div class="plan-precio">
+            <span class="precio">S/75.99</span>
+            <span class="periodo">por mes</span>
+          </div>
+        </div>
+
+        <div class="plan-contenido">
+          <div class="plan-seccion">
+            <h4>Contenido avanzado:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> 10 consejos semanales + casos de estudio y ejercicios prácticos</li>
+              <li><i class="fas fa-check"></i> Guías descargables y mini-cursos trimestrales</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Talleres:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Acceso anticipado y grabaciones de eventos mensuales</li>
+              <li><i class="fas fa-check"></i> Descuento del 50 % en talleres presenciales</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Notificaciones personalizadas:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Recordatorios vía correo electrónico y notificaciones push ajustados a tu zona horaria</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Informes y métricas:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Reporte mensual de tu tiempo de uso digital</li>
+              <li><i class="fas fa-check"></i> Calculadora de progreso con benchmarks y metas personalizados</li>
+            </ul>
+          </div>
+
+          <div class="plan-seccion">
+            <h4>Soporte Premium:</h4>
+            <ul class="plan-features">
+              <li><i class="fas fa-check"></i> Acceso prioritario al canal de chat con expertos</li>
+              <li><i class="fas fa-check"></i> Respuesta garantizada en 24 h para consultas</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="plan-footer">
+          <button class="plan-btn plan-btn-premium" id="elegir-premium">
+            Elegir plan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="suscripciones-cta">
+      <p>¿Tienes dudas sobre cuál plan elegir?</p>
+      <button class="contacto-planes-btn" onclick="window.location.href='#contact'">
+        <i class="fas fa-question-circle"></i>
+        Contáctanos para asesoría
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Modal para suscripción Premium (US50) -->
+<div class="modal-overlay" id="suscripcion-modal">
+  <div class="modal-content suscripcion-modal">
+    <button class="modal-close" id="close-suscripcion-modal">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="modal-header">
+      <h2>Suscríbete a nuestro Boletín de Bienestar Digital</h2>
+      <p>Completa nuestro plan y recibe cada semana consejos exclusivos para desconectarte, mejorar tu productividad y cuidar tu salud mental.</p>
+    </div>
+    
+    <div class="modal-body">
+      <form class="suscripcion-form" id="suscripcion-form" novalidate>
+        <div class="form-group">
+          <label for="suscripcion-email">Correo electrónico:</label>
+          <input type="text" id="suscripcion-email" name="email" placeholder="ejemplo@universidad.edu.pe">
+          <div class="error-message" id="error-suscripcion-email"></div>
+        </div>
+        
+        <div class="plan-seleccionado">
+          <h4>Plan seleccionado: <span class="plan-nombre">Premium</span></h4>
+          <p class="plan-descripcion">S/75.99 por mes - Acceso completo a contenido exclusivo y soporte prioritario</p>
+        </div>
+
+        <div class="form-section">
+          <h4>Datos de pago</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="numero-tarjeta">Número de tarjeta:</label>
+              <input type="text" id="numero-tarjeta" name="numeroTarjeta" placeholder="1234 5678 9012 3456" maxlength="19">
+              <div class="error-message" id="error-numero-tarjeta"></div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="titular-tarjeta">Titular de tarjeta:</label>
+            <input type="text" id="titular-tarjeta" name="titularTarjeta" placeholder="Nombre como aparece en la tarjeta">
+            <div class="error-message" id="error-titular-tarjeta"></div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fecha-expiracion">Fecha de expiración:</label>
+              <input type="text" id="fecha-expiracion" name="fechaExpiracion" placeholder="MM/AA" maxlength="5">
+              <div class="error-message" id="error-fecha-expiracion"></div>
+            </div>
+            
+            <div class="form-group">
+              <label for="cvv">CVV:</label>
+              <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
+              <div class="error-message" id="error-cvv"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="submit-suscripcion-btn">
+            <i class="fas fa-credit-card"></i>
+            Suscribirme
+          </button>
+        </div>
+      </form>
+      
+      <!-- Mensaje de éxito -->
+      <div class="suscripcion-exito" id="suscripcion-exito" style="display: none;">
+        <div class="exito-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3>¡Suscripción confirmada!</h3>
+        <p>Tu suscripción al plan Premium ha sido procesada exitosamente. Recibirás un correo de confirmación y comenzarás a recibir nuestros consejos semanales de bienestar digital.</p>
+        <div class="exito-detalles">
+          <p><strong>Plan:</strong> Premium</p>
+          <p><strong>Precio:</strong> S/75.99/mes</p>
+          <p><strong>Próximo cobro:</strong> 8 de agosto, 2025</p>
+        </div>
+        <button class="cerrar-exito-btn" id="cerrar-suscripcion-exito">
+          <i class="fas fa-times"></i>
+          Cerrar
+        </button>
+      </div>
+
+      <!-- Mensaje de error para correo duplicado -->
+      <div class="suscripcion-error" id="suscripcion-error" style="display: none;">
+        <div class="error-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3>Correo ya suscrito</h3>
+        <p>El correo electrónico que proporcionaste ya está registrado en nuestro sistema. Si necesitas cambiar tu plan o tienes alguna consulta, por favor contáctanos.</p>
+        <button class="cerrar-error-btn" id="cerrar-suscripcion-error">
+          <i class="fas fa-times"></i>
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para descripción del taller -->
+<div class="modal-overlay" id="taller-modal">
+  <div class="modal-content taller-modal">
+    <button class="modal-close" id="close-modal">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="modal-header">
+      <h2 id="modal-taller-titulo">Descripción del taller</h2>
+    </div>
+    
+    <div class="modal-body">
+      <div class="taller-descripcion">
+        <div class="taller-imagen-container">
+          <img id="modal-taller-imagen" src="" alt="Imagen del taller">
+        </div>
+        
+        <div class="taller-detalles">
+          <h3 id="modal-taller-nombre">Nombre del Taller</h3>
+          <p id="modal-taller-descripcion">Descripción del taller...</p>
+          
+          <div class="taller-info-grid">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <strong>Lugar:</strong>
+                <span id="modal-taller-lugar">UPC - Campus Monterrico</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <i class="fas fa-calendar-alt"></i>
+              <div>
+                <strong>Fecha:</strong>
+                <span id="modal-taller-fecha">27 de julio</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <strong>Hora:</strong>
+                <span id="modal-taller-hora">14:00 - 16:00</span>
+              </div>
+            </div>
+            
+            <div class="info-item">
+              <i class="fas fa-door-open"></i>
+              <div>
+                <strong>Salón:</strong>
+                <span id="modal-taller-salon">CS - 603</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-actions">
+        <button class="inscribir-modal-btn" id="abrir-inscripcion">
+          <i class="fas fa-user-plus"></i>
+          Inscribirme
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para inscripción al taller -->
+<div class="modal-overlay" id="inscripcion-modal">
+  <div class="modal-content inscripcion-modal">
+    <button class="modal-close" id="close-inscripcion-modal">
+      <i class="fas fa-times"></i>
+    </button>
+    
+    <div class="modal-header">
+      <h2>Inscripción al taller</h2>
+    </div>
+    
+    <div class="modal-body">
+      <div class="inscripcion-info">
+        <p>Rellene los campos para confirmar tu asistencia en el Taller</p>
+      </div>
+      
+      <form class="inscripcion-form" id="inscripcion-form">
+        <div class="form-group">
+          <label for="inscripcion-nombres">Nombres:</label>
+          <input type="text" id="inscripcion-nombres" name="nombres" placeholder="Ingresa tus nombres">
+          <div class="error-message" id="error-inscripcion-nombres"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inscripcion-apellidos">Apellidos:</label>
+          <input type="text" id="inscripcion-apellidos" name="apellidos" placeholder="Ingresa tus apellidos">
+          <div class="error-message" id="error-inscripcion-apellidos"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inscripcion-email">Correo electrónico:</label>
+          <input type="email" id="inscripcion-email" name="email" placeholder="ejemplo@universidad.edu.pe">
+          <div class="error-message" id="error-inscripcion-email"></div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inscripcion-codigo">Código de estudiante:</label>
+            <input type="text" id="inscripcion-codigo" name="codigo" placeholder="U202012345">
+            <div class="error-message" id="error-inscripcion-codigo"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="inscripcion-universidad">Universidad:</label>
+            <input type="text" id="inscripcion-universidad" name="universidad" placeholder="Universidad Peruana de...">
+            <div class="error-message" id="error-inscripcion-universidad"></div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inscripcion-razon">Razón por la que deseas asistir al taller (opcional):</label>
+          <textarea id="inscripcion-razon" name="razon" rows="4" placeholder="Describe por qué te interesa este taller..."></textarea>
+          <div class="error-message" id="error-inscripcion-razon"></div>
+        </div>
+        
+        <div class="form-actions">
+          <button type="submit" class="submit-inscripcion-btn">
+            <i class="fas fa-paper-plane"></i>
+            Inscribirme
+          </button>
+        </div>
+      </form>
+      
+      <!-- Mensaje de éxito -->
+      <div class="inscripcion-exito" id="inscripcion-exito" style="display: none;">
+        <div class="exito-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3>¡Inscripción exitosa!</h3>
+        <p>Te has inscrito correctamente al taller. Recibirás un correo de confirmación con todos los detalles.</p>
+        <button class="cerrar-exito-btn" id="cerrar-exito">
+          <i class="fas fa-times"></i>
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
